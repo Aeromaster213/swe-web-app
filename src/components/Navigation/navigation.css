@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+.navigation{
+    background: none;
+    width: 100vw;
+    min-height: 26px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    display: flex;
+    margin-left: 20px;
+    justify-content: flex-start;
+}
+
+.nav-logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 29px;
+    color: white;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-right: 20px;
+}
+
+.nav-links-item{
+    display: flex;
+    align-items: center;
+}
+
+.nav-links-text{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: white;
+}
