@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+.centerbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.centerbox-container{
+    width: 1000px;
+    height: 250px;
+    border-radius: 30px;
+    background-color: #21215B;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 30px repeat(5, 1fr);
+}
+
+.centerbox-title{
+    grid-column: 1/ span 4;
+    grid-row: 1/ span 2;
+    
+    padding: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.centerbox-video{
+    grid-column: 1/ span 2;
+    grid-row: 3/ span 4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerbox-audio{
+    grid-column: 3/ span 2;
+    grid-row: 3/ span 4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerbox-text{
+    color: #6666A3;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
