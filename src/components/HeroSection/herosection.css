@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+.herosection-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr) 70px;
+    margin: 20px;
+}
+
+.herosection-text {
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    font-weight: 800;
+    font-size: 80px;
+}
+
+.one {
+    grid-column: 1/ span 5;
+    grid-row: 2/ span 1;
+}
+
+.two {
+    grid-column: 3/ span 5;
+    grid-row: 3/ span 1;
+}
+
+.herosection-image {
+    grid-column: 8/ span 5;
+    grid-row: 1/ span 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.herosection-button {
+    grid-column: 1/ span 12;
+    grid-row: 5/ span 1;
+    align-self: center;
+    justify-self: center;
+    width: 200px;
+    height: 50px;
+    background: #8080D7;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
