@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.about {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    transition: transform 0.2s ease-in-out;
+}
+
+.circle:hover {
+    transform: scale(1.5);
+}
+
+.line {
+    position: absolute;
+    pointer-events: none;
+}
