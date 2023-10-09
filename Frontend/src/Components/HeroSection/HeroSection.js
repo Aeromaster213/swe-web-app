@@ -28,7 +28,8 @@ export default function HeroSection() {
     }
 
     const handleUpload = async () => {
-        if (file.selectedFile) {
+        if(!file) window.alert("Select A file first")
+        else if (file.selectedFile) {
             console.log(file);
             const formData = new FormData();
             formData.append('file', file.selectedFile, file.selectedFile.name);
