@@ -13,7 +13,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(#000130, #00010A);
+    background-image: linear-gradient(#010232, #00010A);
+    overflow-x: hidden;
 }
 
 .circle {
