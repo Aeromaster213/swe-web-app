@@ -21,7 +21,7 @@ Abhinav Gupta       : User Interface Design, Express JS setup
 
 ## To Run the website ->
 
-###Compiling docker to create the image
+### Compiling docker to create the image
 
 ```bash
 cd src/
