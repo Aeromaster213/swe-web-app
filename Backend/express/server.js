@@ -71,6 +71,17 @@ app.post("/api/upload", (req, res) => {
   });
 });
 
+
+
+// Dummy code for testing
+
+const backpropagate = require('./functionals/backpropagate');
+const srt = "This is the srt string";
+const txt = "This is the txt string";
+
+const data = { srt, txt };
+backpropagate.sendToFrontend(data);
+
 module.exports = {connection};
 
 
