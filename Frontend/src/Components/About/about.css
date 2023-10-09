@@ -19,15 +19,79 @@
 
 .circle {
     border-radius: 50%;
+    z-index: 0;
 }
 
 #c1 {
-    height: 30px;
-    width: 30px;
-    background-color: aqua;
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 54px;
+    height: 54px;
+    top: 560px;
+    left: 111px;
+    background: #8AD0DF;
+}
+
+#c2 {
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    top: 141px;
+    left: 911px;
+    background: #0075FF;
+}
+
+#c3 {
+    position: absolute;
+    width: 72px;
+    height: 72px;
+    top: 55px;
+    left: 1172px;
+    background: #8080D7;
+}
+
+#c4 {
+    position: absolute;
+    width: 107px;
+    height: 107px;
+    top: 461px;
+    left: 446px;
+    background: #FFFFFF;
+}
+
+#c5 {
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    top: 488px;
+    left: 964px;
+    background: #8AD0DF;
+}
+
+#c6 {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    top: 584px;
+    left: 1244px;
+    background: #D9D9D9;
+}
+
+#c7 {
+    position: absolute;
+    width: 29px;
+    height: 29px;
+    top: 07px;
+    left: 431px;
+    background: #AAD9D9;
+}
+
+#c8 {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    top: 207px;
+    left: 228px;
+    background: #9747FF;
 }
 
 .about-text {
@@ -35,6 +99,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .about-text p {
@@ -42,13 +107,13 @@
     padding: 0;
 }
 
-.magic{
+.magic {
     display: inline-block;
     position: relative;
 }
 
-.magic-star{
-    --size: clamp(20px,1.5vw,30px);
+.magic-star {
+    --size: clamp(20px, 1.5vw, 30px);
 
     display: block;
     height: var(--size);
@@ -60,33 +125,36 @@
     animation: scale 700ms ease forwards;
 }
 
-@keyframes scale{
-    from,to{
+@keyframes scale {
+
+    from,
+    to {
         transform: scale(0);
     }
 
-    50%{
+    50% {
         transform: scale(1);
     }
 }
 
-.magic-star > svg{
+.magic-star>svg {
     display: block;
     opacity: 0.3;
 
     animation: rotate 1000ms linear infinite;
 }
 
-@keyframes rotate{
-    from{
+@keyframes rotate {
+    from {
         transform: rotate(0deg);
     }
-    to{
+
+    to {
         transform: rotate(180deg);
     }
 }
 
-.magic-star > svg > path{
+.magic-star>svg>path {
     fill: #FF00FF;
 }
 

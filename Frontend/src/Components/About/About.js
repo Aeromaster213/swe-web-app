@@ -5,15 +5,15 @@ import './about.css';
 
 export default function About() {
     const aboutRef = useRef(null);
-    
+
     useEffect(() => {
         const handleScroll = () => {
             const c1 = document.getElementById('c1');
             let refPoint = aboutRef.current;
             if (refPoint) {
                 let scrollVal = window.scrollY - refPoint.getBoundingClientRect().top;
-                c1.style.left = scrollVal * 2.5 + 'px';
-                c1.style.marginTop = scrollVal / 3 + 'px';
+                // c1.style.left = scrollVal * 2.5 + 'px';
+                // c1.style.marginTop = scrollVal / 3 + 'px';
                 console.log("Moving!");
             }
         };
@@ -72,16 +72,10 @@ export default function About() {
                 <p>to convert media files </p>
                 <p>into text</p>
             </div>
-
-            <div className="circle" id="c1"></div>
-            <div className="circle" id="c2"></div>
-            <div className="circle" id="c3"></div>
-            <div className="circle" id="c4"></div>
-            <div className="circle" id="c5"></div>
-            <div className="circle" id="c6"></div>
-            <div className="circle" id="c7"></div>
-            <div className="circle" id="c8"></div>
-        </div>
+            {Array.from({length:9}).slice(1).map((num, index)=>{
+                return <div className="circle" key={index+1} id={`c${index+1}`}>{index+1}</div>
+            })}
+        </div >
     );
 }
 

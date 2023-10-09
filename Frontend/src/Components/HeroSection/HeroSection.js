@@ -24,6 +24,33 @@ export default function HeroSection() {
         }
     }
 
+    const handleUpload = async () => {
+        if (file) {
+            const formData = new FormData();
+            formData.append('file', file );
+
+            try {
+                const response = await fetch("http://localhost:5000/api/upload",
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                )
+                if(response.ok){
+                    const data = await response.json();
+                    console.log("File Hash:", data.hash);
+                } else {
+                    console.error("Failed to upload") 
+                }
+            } catch (error) {
+                console.error("Could not upload:", error);
+            }
+        }
+        else{
+            console.log("File not selected");
+        }
+    }
+
     return (
         <div className="herosection-container">
             <div className="herosection-text translate"><text style={{ color: "#8080D7" }}>T</text>RANSLATE</div>
@@ -31,18 +58,25 @@ export default function HeroSection() {
             <div className="herosection-image">
                 <img src={heroimage} alt="heroimage" />
             </div>
-            <input
-                type="file"
-                accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
-                ref={pickerRef}
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
-            />
-            <button
-                type="button"
-                className="herosection-button"
-                onClick={handleButtonClick}
-            >UPLOAD FILE</button>
+            <div className="herosection-buttons">
+                <input
+                    type="file"
+                    accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
+                    ref={pickerRef}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                />
+                <button
+                    type="button"
+                    className="herosection-button"
+                    onClick={handleButtonClick}
+                >{file ? file.name : "Select File"}</button>
+                <button
+                    type="button"
+                    className="herosection-button"
+                    onClick={handleUpload}
+                >Upload File</button>
+            </div>
         </div>
     );
 }
