@@ -39,11 +39,14 @@ export default function About() {
 
     return (
         <div ref={aboutRef} className="about">
-            <p>We Use AI-Powered Tools</p>
-            <p>to convert media files</p>
-            <p>into text</p>
+            <div className="about-text">
+                <p>We use <span className="magic">AI-Powered</span> Tools</p>
+                <p>to convert media files </p>
+                <p>into text</p>
+            </div>
 
             <div className="circle" id="c1"></div>
         </div>
-    );
-}
+    );}    
+
+
