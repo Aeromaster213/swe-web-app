@@ -1,7 +1,7 @@
 const { spawn } = require("child_process")
 
 function callModel(file) {
-    const ml = spawn("python", ["-c", "import ml; ml.remote({})"])
+    const ml = spawn("python", ["-c", `import ml; ml.remote(${file})`])
     var dataOUT;
     ml.stdout.on('data', (data) => {
         dataOUT=data;
