@@ -86,9 +86,6 @@ app.post("/api/upload", (req, res) => {
         console.error("Error in transcription:", error);
       });
 
-
-    // Log the transcription
-    console.log("Transcription:", transcription);
   });
 });
 
