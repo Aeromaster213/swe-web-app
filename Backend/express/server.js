@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
+const fs = require("fs-extra");
 
 // Load environment variables from .env
 dotenv.config(); 
@@ -19,6 +20,7 @@ else{
 // Initializing variables
 const app = express(); // creating instance of express app
 const port = process.env.PORT || 5000;
+const backport = process.env.BACKPORT || 5001;
 
 // Middleware
 app.use(cors());
@@ -50,6 +52,10 @@ mongoose.connect(uri).then(()=>{
   app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
   });
+});
+
+app.listen(backport, () => {
+  console.log(`Backpropagation server running on http://localhost:${backport}`);
 });
 
 // Import the uploader and renaming module
@@ -84,11 +90,11 @@ app.post("/api/upload", (req, res) => {
 
         const backpropagate = require('./functionals/backpropagate');
         const srt = "This is the srt string";
-        const txt = "This is the txt string";
-        txt = backpropagate;
+        const txt = transcription;
 
         const data = { srt, txt };
         backpropagate.sendToFrontend(data);
+        fs.emptyDirSync('./filecache');
       })
       .catch(error => {
         console.error("Error in transcription:", error);

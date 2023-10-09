@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const port = 5001; // You can use any available port
 
 app.use(cors());
 
@@ -11,9 +10,6 @@ function sendToFrontend(data) {
     res.json(data);
   });
 
-  app.listen(port, () => {
-    console.log(`Backpropagation server running on http://localhost:${port}`);
-  });
 }
 
 module.exports = { sendToFrontend };

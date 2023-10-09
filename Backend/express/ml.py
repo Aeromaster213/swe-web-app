@@ -10,7 +10,7 @@ def transcribe_srt(model, file):
     return rslt["text"]
 
 def remote(file):
-    model = whisper.load_model("medium", download_root="/persistent").to(DEVICE)
+    model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
     print(whisper.transcribe(model, file)["text"])
 
 if __name__=="__main__":
