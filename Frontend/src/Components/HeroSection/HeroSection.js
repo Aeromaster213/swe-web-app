@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
+import { useUploadContext } from "../../Context/UploadContext";
 import './herosection.css';
 
 const heroimage = require('./Images/heroimage.png')
 
 export default function HeroSection() {
+    const {handleUploadComplete} = useUploadContext();
+
     const pickerRef = useRef(null);
     const [file, setFile] = useState(null);
 
@@ -40,6 +43,7 @@ export default function HeroSection() {
                 if (response.ok) {
                     const data = await response.json();
                     console.log("File Hash:", data.hash);
+                    handleUploadComplete(true);
                 } else {
                     console.error("Failed to upload")
                 }

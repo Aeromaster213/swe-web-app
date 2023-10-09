@@ -34,14 +34,19 @@ Design               : [link](https://docs.google.com/document/d/181ZK64r7Mhxgnh
 ### Compiling docker to create the image
 
 ```bash
-cd Backend/
-sudo docker build -t transcribe_server:latest .
+set DOCKER_BUILDKIT=1
+sudo docker build -t transcribe_server:latest Backend/
 ```
 
 Run the following commands in order
 ```bash
+cd Backend
 sudo docker-compose up # if using CUDA GPU accelerated inference -- recommended for performance
 sudo docker run --rm -t transcribe_server:latest # if using CPU
+```
+(in new tab)
+```bash
+cd Frontend
 npm i
 npm start
 ```
