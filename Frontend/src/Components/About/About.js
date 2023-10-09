@@ -15,7 +15,6 @@ export default function About() {
                 console.log("Moving!");
             }
         };
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
