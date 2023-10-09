@@ -29,21 +29,22 @@ const uri = process.env.ATLAS_URI;
 const connection = mongoose.connection;
 
 connection.on("connecting",()=>{
-  console.log("Connecting to database");
+  console.log("Connecting to database...");
 })
 
 connection.on("connected",()=>{
-  console.log("Connected to database");
+  console.log("Connected to database.");
 })
 
 connection.on("disconnected",()=>{
-  console.log("Disconnected to database");
+  console.log("Disconnected from database.");
 })
 
 connection.on("error", (err) => {
   console.error("MongoDB connection error:", err);
 });
 
+// Start Server
 mongoose.connect(uri).then(()=>{
   app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
@@ -56,6 +57,5 @@ mongoose.connect(uri).then(()=>{
 const recordRouter = require("./routes/record");
 app.use("/records", recordRouter); // Example route
 
-// Start server
 
 
