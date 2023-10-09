@@ -34,7 +34,7 @@ Design               : [link](https://docs.google.com/document/d/181ZK64r7Mhxgnh
 ### Compiling docker to create the image
 
 ```bash
-cd src/
+cd Backend/
 sudo docker build -t transcribe_server:latest .
 ```
 
