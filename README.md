@@ -23,6 +23,7 @@ Abhinav Gupta       : User Interface Design, Express JS setup
 
 Run the following commands in order
 ```bash
+sudo docker-compose up
 npm i
 npm start
 ```
