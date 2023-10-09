@@ -78,8 +78,14 @@ app.post("/api/upload", (req, res) => {
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
 
-    // Call transcriber
-    const transcription = transcriber.callModel(newFileName); // Call the transcriber
+    transcriber.callModel(newFileName)
+      .then(transcription => {
+        console.log("Transcription:", transcription);
+      })
+      .catch(error => {
+        console.error("Error in transcription:", error);
+      });
+
 
     // Log the transcription
     console.log("Transcription:", transcription);
