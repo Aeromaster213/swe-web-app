@@ -15,3 +15,5 @@ function callModel(file) {
         return dataOUT;
     })
 }
+
+module.exports = { callModel };
