@@ -43,7 +43,9 @@ Run the following commands in order
 cd Backend
 sudo docker-compose up # if using CUDA GPU accelerated inference -- recommended for performance
 sudo docker run --rm -t transcribe_server:latest # if using CPU
+```
 (in new tab)
+```bash
 cd ../Frontend
 npm i
 npm start
