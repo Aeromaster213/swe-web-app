@@ -30,6 +30,7 @@ recordRoutes.route("/record/add").post(async function (req, res) {
     const newRecord = new IdInfo({ id, password });
     await newRecord.save();
     res.status(201).json(newRecord);
+    console.log("Added")
   } catch (err) {
     res.status(400).json({ message: err.message });
   }

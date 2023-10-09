@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 export default function Create() {
     const [form, setForm] = useState({
-        name: "",
-        position: "",
-        level: "",
+        id: "",
+        password: "",
     });
     const navigate = useNavigate();
     // These methods will update the state properties.
@@ -18,7 +17,7 @@ export default function Create() {
         e.preventDefault();
         // When a post request is sent to the create url, we'll add a new record to the database.
         const newPerson = { ...form };
-        await fetch("http://localhost:5000/record/add", {
+        await fetch("http://localhost:5000/records/record/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +28,7 @@ export default function Create() {
                 window.alert(error);
                 return;
             });
-        setForm({ name: "", position: "", level: "" });
+        setForm({ id: "", password: ""});
         navigate("/");
     }
     // This following section will display the form that takes the input from the user.
@@ -38,63 +37,26 @@ export default function Create() {
             <h3>Create New Record</h3>
             <form onSubmit={onSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="id">ID</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="name"
-                        value={form.name}
-                        onChange={(e) => updateForm({ name: e.target.value })}
+                        id="id"
+                        value={form.id}
+                        onChange={(e) => updateForm({ id: e.target.value })}
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="position">Position</label>
+                    <label htmlFor="password">Password</label>
                     <input
                         type="text"
                         className="form-control"
-                        id="position"
-                        value={form.position}
-                        onChange={(e) => updateForm({ position: e.target.value })}
+                        id="password"
+                        value={form.password}
+                        onChange={(e) => updateForm({ password: e.target.value })}
                     />
                 </div>
-                <div className="form-group">
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionIntern"
-                            value="Intern"
-                            checked={form.level === "Intern"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionIntern" className="form-check-label">Intern</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionJunior"
-                            value="Junior"
-                            checked={form.level === "Junior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionJunior" className="form-check-label">Junior</label>
-                    </div>
-                    <div className="form-check form-check-inline">
-                        <input
-                            className="form-check-input"
-                            type="radio"
-                            name="positionOptions"
-                            id="positionSenior"
-                            value="Senior"
-                            checked={form.level === "Senior"}
-                            onChange={(e) => updateForm({ level: e.target.value })}
-                        />
-                        <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-                    </div>
-                </div>
+                
                 <div className="form-group">
                     <input
                         type="submit"
