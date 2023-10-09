@@ -52,7 +52,7 @@ mongoose.connect(uri).then(()=>{
 });
 
 // Import the uploader module
-const uploader = require('./uploader');
+const uploader = require('./functionals/uploader');
 
 // Routes
 const recordRouter = require("./routes/record");
@@ -65,7 +65,10 @@ const babbleRouter = require("./routes/babbleroute");
 app.use("/babble", babbleRouter); // Transcription route
 
 app.post("/api/upload", (req, res) => {
-  uploader.handleUpload(req, res); // Use the function from uploader.js
+  uploader.handleUpload(req, res, (hash) => {
+    // Pass the hash to the cache handler or perform any other operations
+    console.log(`Received hash: ${hash}`);
+  });
 });
 
 module.exports = {connection};
