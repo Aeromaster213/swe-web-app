@@ -46,7 +46,7 @@ sudo docker run --rm -t transcribe_server:latest # if using CPU
 ```
 (in new tab)
 ```bash
-cd ../Frontend
+cd Frontend
 npm i
 npm start
 ```
