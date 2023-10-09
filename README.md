@@ -12,6 +12,12 @@ No other solution exist outside of research domians, and that too do not provide
 
 **Long story short: We are building a website that can transcribe and translate input audio/video files to text/srt files using AI based models of Whisper.cpp**
 
+## Contributions
+Arup Biswas         : Documentation and Technology Research (Existing solutions and usable tech)
+Arvind Srinivasan   : Dockerfile, Model deployment
+Dhriti Chintakunta  : User Interface development
+Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup
+Abhinav Gupta       : User Interface Design, Express JS setup
 
 ## To Run the website ->
 
