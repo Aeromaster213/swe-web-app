@@ -14,7 +14,7 @@ No other solution exist outside of research domians, and that too do not provide
 
 ## Contributions
 Arup Biswas         : Documentation and Tech Research (Existing solutions and usable tech) <br>
-Arvind Srinivasan   : Dockerfile, Model deployment <br>
+Arvind Srinivasan   : Dockerfile, Model deployment, ExpressJS bridge <br>
 Dhriti Chintakunta  : User Interface development <br>
 Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup <br>
 Abhinav Gupta       : User Interface Design, Express JS setup 
