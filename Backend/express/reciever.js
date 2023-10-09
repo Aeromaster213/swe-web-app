@@ -6,7 +6,7 @@ const fs = require("fs");
 const crypto = require("crypto");
 
 const app = express();
-const port =  5000;
+const port = 5000;
 
 // Middleware to parse JSON and handle file uploads
 app.use(bodyParser.json());
