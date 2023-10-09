@@ -19,6 +19,8 @@ Dhriti Chintakunta  : User Interface development <br>
 Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup <br>
 Abhinav Gupta       : User Interface Design, Express JS setup 
 
+## Doc links
+Project Concept : [link](https://docs.google.com/document/d/1HpocQnrGQJywSnZ3fIJ-sw-yIiCgGKAyLZrm4KkIKmw/edit?usp=drivesdk)
 ## To Run the website ->
 
 ### Compiling docker to create the image
