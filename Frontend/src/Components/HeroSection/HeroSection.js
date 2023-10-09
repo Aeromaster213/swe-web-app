@@ -1,14 +1,27 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import './herosection.css';
 
 const heroimage = require('./Images/heroimage.png')
 
 export default function HeroSection() {
     const pickerRef = useRef(null);
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+        if (selectedFile) {
+            console.log("Selected file name:", selectedFile.name);
+            // You can now do something with the selected file, such as uploading it.
+        } else {
+            console.log("No file selected.");
+        }
+    }
 
     const handleButtonClick = () => {
-        if (pickerRef.current)
+        if (pickerRef.current) {
             pickerRef.current.click();
+        }
     }
 
     return (
@@ -19,10 +32,11 @@ export default function HeroSection() {
                 <img src={heroimage} alt="heroimage" />
             </div>
             <input
-                className="herosection-button-hidden"
                 type="file"
                 accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
                 ref={pickerRef}
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
             />
             <button
                 type="button"

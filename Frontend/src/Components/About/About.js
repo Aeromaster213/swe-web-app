@@ -23,7 +23,7 @@ export default function About() {
             });
         });
 
-        let refPoint = aboutRef.current;
+        const refPoint = aboutRef.current;
         if (refPoint) {
             observer.observe(refPoint);
         }
