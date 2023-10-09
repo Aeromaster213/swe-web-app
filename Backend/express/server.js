@@ -81,6 +81,14 @@ app.post("/api/upload", (req, res) => {
     transcriber.callModel(newFileName)
       .then(transcription => {
         console.log("Transcription:", transcription);
+
+        const backpropagate = require('./functionals/backpropagate');
+        const srt = "This is the srt string";
+        const txt = "This is the txt string";
+        txt = backpropagate;
+
+        const data = { srt, txt };
+        backpropagate.sendToFrontend(data);
       })
       .catch(error => {
         console.error("Error in transcription:", error);
@@ -93,9 +101,9 @@ app.post("/api/upload", (req, res) => {
 
 // Dummy code for testing
 
-const backpropagate = require('./functionals/backpropagate');
-const srt = "This is the srt string";
-const txt = "This is the txt string";
+// const backpropagate = require('./functionals/backpropagate');
+// const srt = "This is the srt string";
+// const txt = "This is the txt string";
 
 const data = { srt, txt };
 backpropagate.sendToFrontend(data);
