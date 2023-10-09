@@ -22,7 +22,7 @@ export default function Result() {
 
     useEffect(() => {
         getResult();
-    }, []);
+    });
 
     useEffect(() => {
         setCopiedSrt(false);
@@ -60,9 +60,13 @@ export default function Result() {
         }
     }, [copiedTxt]);
 
+    useEffect(() => {
+        return () => setStrings({});
+    }, [])
+
     return (
         <div className="result">
-            {strings ? (
+            {strings? (
                 <div className="result-container">
                     <div className="result-heading">
                         <p className="result-heading-text"><text style={{ color: "#7a7acd" }}>Y</text>our <text style={{ color: "#7a7acd" }}>T</text>ranscription <text style={{ color: "#7a7acd" }}>I</text>s <text style={{ color: "#7a7acd" }}>H</text>ere!</p>
