@@ -51,7 +51,8 @@ mongoose.connect(uri).then(()=>{
   });
 });
 
-
+// Import the uploader module
+const uploader = require('./uploader');
 
 // Routes
 const recordRouter = require("./routes/record");
@@ -62,6 +63,10 @@ app.use("/test", testRouter); // Test route
 
 const babbleRouter = require("./routes/babbleroute");
 app.use("/babble", babbleRouter); // Transcription route
+
+app.post("/api/upload", (req, res) => {
+  uploader.handleUpload(req, res); // Use the function from uploader.js
+});
 
 module.exports = {connection};
 
