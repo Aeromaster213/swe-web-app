@@ -16,7 +16,7 @@ No other solution exist outside of research domians, and that too do not provide
 Arup Biswas         : Documentation and Tech Research (Existing solutions and usable tech) <br>
 Arvind Srinivasan   : Docker, Model deployment in Python, ExpressJS bridge <br>
 Dhriti Chintakunta  : User Interface development <br>
-Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup <br>
+Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup, Middleware integration <br>
 Abhinav Gupta       : User Interface Design, Express JS setup 
 
 ## Doc links
