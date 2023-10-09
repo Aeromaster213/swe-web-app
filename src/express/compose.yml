@@ -1,0 +1,18 @@
+services:
+  backend:
+    ports:
+     - "8000:3000"
+    image: test:latest
+    volumes:
+      - pypi: /pyenv
+        model: /model
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia #ONLY Nvidia will work when using docker-compose
+              count: 1
+              capabilities: [gpu]
+volumes:
+  pypi:
+  model:
