@@ -49,8 +49,14 @@ function handleUpload(req, res, callback) {
     //console.log(hash);
 
     // Pass the hash back to the callback function
+    // if (callback) {
+    //   callback(hash);
+    // }
+
+    // Pass both the hash and the original file name back to the callback function
     if (callback) {
-      callback(hash);
+      const originalFileName = req.file.originalname;
+      callback(hash, originalFileName);
     }
 
   });

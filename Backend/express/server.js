@@ -51,8 +51,9 @@ mongoose.connect(uri).then(()=>{
   });
 });
 
-// Import the uploader module
+// Import the uploader and renaming module
 const uploader = require('./functionals/uploader');
+const cacheRename = require('./functionals/cache_rename');
 
 // Routes
 const recordRouter = require("./routes/record");
@@ -67,6 +68,8 @@ app.use("/babble", babbleRouter); // Transcription route
 app.post("/api/upload", (req, res) => {
   uploader.handleUpload(req, res, (hash) => {
     // Pass the hash to the cache handler or perform any other operations
+    const newFileName = `${hash}${path.extname(originalFileName)}`;
+    cacheRename.renameFile(originalFileName, newFileName);
     console.log(`Received hash: ${hash}`);
   });
 });
