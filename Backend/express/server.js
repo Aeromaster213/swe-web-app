@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 
 // Load environment variables from .env
 dotenv.config(); 
@@ -66,7 +67,7 @@ const babbleRouter = require("./routes/babbleroute");
 app.use("/babble", babbleRouter); // Transcription route
 
 app.post("/api/upload", (req, res) => {
-  uploader.handleUpload(req, res, (hash) => {
+  uploader.handleUpload(req, res, (hash, originalFileName) => {
     // Pass the hash to the cache handler or perform any other operations
     const newFileName = `${hash}${path.extname(originalFileName)}`;
     cacheRename.renameFile(originalFileName, newFileName);
