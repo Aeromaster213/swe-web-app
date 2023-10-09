@@ -86,6 +86,8 @@ app.post("/api/upload", (req, res) => {
 
 
     console.log(`Received hash: ${hash}`);
+    const gfu = requre("./functionals/transcriber");
+    console.log(gfu.callModel(newFileName));
   });
 });
 
