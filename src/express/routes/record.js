@@ -5,7 +5,6 @@ const express = require("express");
 // The router will be added as a middleware and will take control of requests starting with path /record.
 const recordRoutes = express.Router();
  
-/*
 // This will help us connect to the database
 const dbo = require("../db/conn");
  
@@ -81,7 +80,5 @@ recordRoutes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
-
-*/
  
 module.exports = recordRoutes;
