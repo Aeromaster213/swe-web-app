@@ -25,13 +25,13 @@ Abhinav Gupta       : User Interface Design, Express JS setup
 
 ```bash
 cd src/
-sudo docker build -t <tag>:<branch> .
+sudo docker build -t transcribe_server:latest .
 ```
 
 Run the following commands in order
 ```bash
-sudo docker-compose up #if using CUDA GPU accelerated inference
-sudo docker run -t <tag>:<branch> # if using CPU
+sudo docker-compose up # if using CUDA GPU accelerated inference -- recommended for performance
+sudo docker run --rm -t transcribe_server:latest # if using CPU
 npm i
 npm start
 ```
