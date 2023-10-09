@@ -60,6 +60,9 @@ app.use("/records", recordRouter); // Info route
 const testRouter = require("./routes/testroute");
 app.use("/test", testRouter); // Test route
 
+const babbleRouter = require("./routes/babbleroute");
+app.use("/babble", babbleRouter); // Transcription route
+
 module.exports = {connection};
 
 
