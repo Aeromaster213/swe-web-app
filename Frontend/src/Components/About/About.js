@@ -3,7 +3,7 @@ import './about.css';
 
 export default function About() {
     const aboutRef = useRef(null);
-
+    
     useEffect(() => {
         const handleScroll = () => {
             const c1 = document.getElementById('c1');
@@ -37,7 +37,7 @@ export default function About() {
     }, []);
 
     return (
-        <div ref={aboutRef} className="about">
+        <div ref={aboutRef} id="about" className="about">
             <div className="about-text">
                 <p>We use <span className="magic">AI-Powered</span> Tools</p>
                 <p>to convert media files </p>
@@ -45,6 +45,13 @@ export default function About() {
             </div>
 
             <div className="circle" id="c1"></div>
+            <div className="circle" id="c2"></div>
+            <div className="circle" id="c3"></div>
+            <div className="circle" id="c4"></div>
+            <div className="circle" id="c5"></div>
+            <div className="circle" id="c6"></div>
+            <div className="circle" id="c7"></div>
+            <div className="circle" id="c8"></div>
         </div>
     );}    
 

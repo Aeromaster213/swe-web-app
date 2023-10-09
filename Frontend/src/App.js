@@ -11,7 +11,7 @@ function App() {
       <Navigation />
       <HeroSection />
       <CenterBox />
-      <About />
+      <About id="about" />
       {/* <Create /> */}
     </div>
   );
