@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './about.css';
 
 export default function About() {
@@ -36,10 +38,37 @@ export default function About() {
         };
     }, []);
 
+    // let index = 0, interval = 1000;
+
+    // const rand = (min, max) =>
+    //     Math.floor(Math.random() * (max - min + 1)) + min;
+
+    // const animate = (star) => {
+    //     star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
+    //     star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
+    //     console.log(star);
+    //     star.style.animation = "none";
+    //     void star.offsetHeight;
+    //     star.style.animation = "";
+    // }
+
+    // useEffect(() => {
+    //     for (const star of document.getElementsByClassName("magic-star")) {
+    //         setTimeout(() => {
+    //             animate(star);
+    //             setInterval(() => animate(star), 1000);
+    //         }, index++ * (interval / 3));
+    //     }
+    // })
+
     return (
         <div ref={aboutRef} id="about" className="about">
             <div className="about-text">
-                <p>We use <span className="magic">AI-Powered</span> Tools</p>
+                <p>We use <span className="magic">
+                    {/* <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span>
+                    <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span>
+                    <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span> */}
+                    <span className="magic-text">AI-Powered </span> </span> Tools</p>
                 <p>to convert media files </p>
                 <p>into text</p>
             </div>
@@ -53,6 +82,7 @@ export default function About() {
             <div className="circle" id="c7"></div>
             <div className="circle" id="c8"></div>
         </div>
-    );}    
+    );
+}
 
 

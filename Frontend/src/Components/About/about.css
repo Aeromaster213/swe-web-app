@@ -42,7 +42,55 @@
     padding: 0;
 }
 
-.magic {
+.magic{
+    display: inline-block;
+    position: relative;
+}
+
+.magic-star{
+    --size: clamp(20px,1.5vw,30px);
+
+    display: block;
+    height: var(--size);
+    left: var(--star-left);
+    position: absolute;
+    top: var(--star-top);
+    width: var(--size);
+
+    animation: scale 700ms ease forwards;
+}
+
+@keyframes scale{
+    from,to{
+        transform: scale(0);
+    }
+
+    50%{
+        transform: scale(1);
+    }
+}
+
+.magic-star > svg{
+    display: block;
+    opacity: 0.3;
+
+    animation: rotate 1000ms linear infinite;
+}
+
+@keyframes rotate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(180deg);
+    }
+}
+
+.magic-star > svg > path{
+    fill: #FF00FF;
+}
+
+.magic-text {
     animation: background-pan 3s linear infinite;
     background: linear-gradient(to right, #FF00FF, #8A2BE2, #FF1493, #FF00FF);
     background-size: 200%;

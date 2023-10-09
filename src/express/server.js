@@ -55,7 +55,10 @@ mongoose.connect(uri).then(()=>{
 
 // Routes
 const recordRouter = require("./routes/record");
-app.use("/records", recordRouter); // Example route
+app.use("/records", recordRouter); // Info route
+
+const testRouter = require("./routes/testroute");
+app.use("/test", testRouter); // Test route
 
 module.exports = {connection};
 
