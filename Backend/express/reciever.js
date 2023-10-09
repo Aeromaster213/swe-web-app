@@ -9,6 +9,7 @@ const app = express();
 const port = 5000;
 
 // Middleware to parse JSON and handle file uploads
+app.use(cors());
 app.use(bodyParser.json());
 
 // Endpoint to handle file uploads
