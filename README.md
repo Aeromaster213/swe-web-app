@@ -19,6 +19,16 @@ Dhriti Chintakunta  : User Interface development <br>
 Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup <br>
 Abhinav Gupta       : User Interface Design, Express JS setup 
 
+## Doc links
+Project Concept : [link](https://docs.google.com/document/d/1HpocQnrGQJywSnZ3fIJ-sw-yIiCgGKAyLZrm4KkIKmw/edit?usp=drivesdk)
+<br>
+Requirements         : [link](https://docs.google.com/document/d/1YWgGKmDxeYOwvWN6YkJi8t6OKxZow1b4/edit?usp=drivesdk&ouid=114268721722635085808&rtpof=true&sd=true)
+<br>
+Use Cases            : [link](https://docs.google.com/document/d/1GQMLbYJCmfG9JFh7Cgzp61rlSL2CsMRq4fEupq4DMKk/edit?usp=drivesdk)
+<br>
+Weekly Status Report : [link](https://docs.google.com/document/d/1jDemDmnepd8-6kNmyRCfemr_Mmsws3XKXDsyNfvufzM/edit?usp=drivesdk)
+<br>
+Design               : [link](https://docs.google.com/document/d/181ZK64r7MhxgnhrBuxd3HlSPzm74X-0rUi2LtAZmsc4/edit?usp=drivesdk)
 ## To Run the website ->
 
 ### Compiling docker to create the image
