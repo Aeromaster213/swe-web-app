@@ -5,7 +5,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 def transcribe_srt(model, file):
-    rslt = whisper.transcribe(model, str(f))
+    rslt = whisper.transcribe(model, "filecache/"+file)
     return rslt["text"]
 
 def remote(file):
