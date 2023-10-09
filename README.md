@@ -21,9 +21,17 @@ Abhinav Gupta       : User Interface Design, Express JS setup
 
 ## To Run the website ->
 
+###Compiling docker to create the image
+
+```bash
+cd src/
+sudo docker build -t <tag>:<branch> .
+```
+
 Run the following commands in order
 ```bash
-sudo docker-compose up
+sudo docker-compose up #if using CUDA GPU accelerated inference
+sudo docker run -t <tag>:<branch> # if using CPU
 npm i
 npm start
 ```
