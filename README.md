@@ -14,7 +14,7 @@ No other solution exist outside of research domians, and that too do not provide
 
 ## Contributions
 Arup Biswas         : Documentation and Tech Research (Existing solutions and usable tech) <br>
-Arvind Srinivasan   : Dockerfile, Model deployment <br>
+Arvind Srinivasan   : Docker, Model deployment in Python, ExpressJS bridge <br>
 Dhriti Chintakunta  : User Interface development <br>
 Keshav Kumar Manjhi : MongoDB setup, ExpressJS setup <br>
 Abhinav Gupta       : User Interface Design, Express JS setup 
@@ -34,7 +34,7 @@ Design               : [link](https://docs.google.com/document/d/181ZK64r7Mhxgnh
 ### Compiling docker to create the image
 
 ```bash
-cd src/
+cd Backend/
 sudo docker build -t transcribe_server:latest .
 ```
 
