@@ -56,6 +56,10 @@ mongoose.connect(uri).then(()=>{
 const uploader = require('./functionals/uploader');
 const cacheRename = require('./functionals/cache_rename');
 
+// Import the transcriber module
+const transcriber = require('./functionals/transcriber'); 
+
+
 // Routes
 const recordRouter = require("./routes/record");
 app.use("/records", recordRouter); // Info route
@@ -70,8 +74,18 @@ app.post("/api/upload", (req, res) => {
   uploader.handleUpload(req, res, (hash, originalFileName) => {
     // Pass the hash to the cache handler or perform any other operations
     const newFileName = `${hash}${path.extname(originalFileName)}`;
+
+    // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
-    console.log(`Received hash: ${hash}`);
+
+    transcriber.callModel(newFileName)
+      .then(transcription => {
+        console.log("Transcription:", transcription);
+      })
+      .catch(error => {
+        console.error("Error in transcription:", error);
+      });
+
   });
 });
 
