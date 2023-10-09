@@ -8,9 +8,9 @@ const client = new MongoClient(Db, {
   useUnifiedTopology: true,
   serverSelectionTimeoutMS: 5000,
 });
- 
+
 var _db;
- 
+
 module.exports = {
   connectToServer: function (callback) {
     client.connect(function (err, db) {
@@ -18,15 +18,14 @@ module.exports = {
       if (err) {
         console.error("Error connecting to MongoDB:", err);
       }
-      else
-      {
+      else {
         _db = db.db("user_data");
-        console.log("Successfully connected to MongoDB."); 
+        console.log("Successfully connected to MongoDB.");
       }
       return callback(err);
     });
   },
- 
+
   getDb: function () {
     return _db;
   },

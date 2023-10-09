@@ -46,8 +46,12 @@
     font-size: 15px;
     letter-spacing: 0.05em;
     color: #FFFFFF;
-
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.herosection-button-hidden{
+    display: none;
 }
