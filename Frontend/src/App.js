@@ -3,6 +3,7 @@ import Navigation from './Components/Navigation/Navigation.js';
 import HeroSection from './Components/HeroSection/HeroSection';
 import CenterBox from './Components/CenterBox/CenterBox';
 import About from './Components/About/About';
+import Create from './Components/create';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <HeroSection />
       <CenterBox />
       <About />
+      <Create />
     </div>
   );
 }
