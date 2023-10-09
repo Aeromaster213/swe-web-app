@@ -9,7 +9,7 @@ export default function HeroSection() {
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        setFile(selectedFile);
+        setFile({ selectedFile: e.target.files[0] });
         if (selectedFile) {
             console.log("Selected file name:", selectedFile.name);
             // You can now do something with the selected file, such as uploading it.
@@ -25,9 +25,10 @@ export default function HeroSection() {
     }
 
     const handleUpload = async () => {
-        if (file) {
+        if (file.selectedFile) {
+            console.log(file);
             const formData = new FormData();
-            formData.append('file', file );
+            formData.append('file', file.selectedFile, file.selectedFile.name);
 
             try {
                 const response = await fetch("http://localhost:5000/api/upload",
@@ -36,17 +37,17 @@ export default function HeroSection() {
                         body: formData,
                     }
                 )
-                if(response.ok){
+                if (response.ok) {
                     const data = await response.json();
                     console.log("File Hash:", data.hash);
                 } else {
-                    console.error("Failed to upload") 
+                    console.error("Failed to upload")
                 }
             } catch (error) {
                 console.error("Could not upload:", error);
             }
         }
-        else{
+        else {
             console.log("File not selected");
         }
     }
@@ -70,7 +71,7 @@ export default function HeroSection() {
                     type="button"
                     className="herosection-button"
                     onClick={handleButtonClick}
-                >{file ? file.name : "Select File"}</button>
+                >{file ? file.selectedFile.name : "Select File"}</button>
                 <button
                     type="button"
                     className="herosection-button"
