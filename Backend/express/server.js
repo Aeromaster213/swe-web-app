@@ -65,6 +65,9 @@ const cacheRename = require('./functionals/cache_rename');
 // Import the transcriber module
 const transcriber = require('./functionals/transcriber'); 
 
+// Import the Babble model
+const Babble = require("./models/babbleModel");
+
 
 // Routes
 const recordRouter = require("./routes/record");
@@ -77,13 +80,47 @@ const babbleRouter = require("./routes/babbleroute");
 app.use("/babble", babbleRouter); // Transcription route
 
 app.post("/api/upload", (req, res) => {
-  uploader.handleUpload(req, res, (hash, originalFileName) => {
+  uploader.handleUpload(req, res, async (hash, originalFileName) => {
     // Pass the hash to the cache handler or perform any other operations
     const newFileName = `${hash}${path.extname(originalFileName)}`;
 
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
 
+    // Check if the record already exists in the Babble collection
+    try {
+      const existingRecord = await Babble.findOne({ id: newFileName });
+      if (existingRecord) {
+        // Use existing data
+        const srt = existingRecord.srt;
+        const txt = existingRecord.txt;
+        console.log("Using existing data");
+        
+        const backpropagate = require('./functionals/backpropagate');
+        const data = { srt, txt };
+        backpropagate.sendToFrontend(data);
+      } else {
+        // Initiate transcription
+        const transcription = await transcriber.callModel(newFileName);
+        console.log("Transcription:", transcription);
+
+        // Save the transcription in the Babble collection
+        const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
+        await newRecord.save();
+
+        const backpropagate = require('./functionals/backpropagate');
+        const srt = "This is the srt string";
+        const txt = transcription;
+        const data = { srt, txt };
+        backpropagate.sendToFrontend(data);
+      }
+      
+      // Remove files from the filecache directory
+      fs.emptyDirSync('./filecache');
+    } catch (error) {
+      console.error("Error in transcription:", error);
+    }
+/*
     transcriber.callModel(newFileName)
       .then(transcription => {
         console.log("Transcription:", transcription);
@@ -99,7 +136,7 @@ app.post("/api/upload", (req, res) => {
       .catch(error => {
         console.error("Error in transcription:", error);
       });
-
+*/
   });
 });
 
