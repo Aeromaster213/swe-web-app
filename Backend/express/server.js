@@ -99,7 +99,7 @@ app.post("/api/upload", (req, res) => {
         
         const backpropagate = require('./functionals/backpropagate');
         const data = { srt, txt };
-        backpropagate.sendToFrontend(data);
+        backpropagate.sendToFrontend(txt);
       } else {
         // Initiate transcription
         const transcription = await transcriber.callModel(newFileName);
@@ -113,7 +113,7 @@ app.post("/api/upload", (req, res) => {
         const srt = "This is the srt string";
         const txt = transcription;
         const data = { srt, txt };
-        backpropagate.sendToFrontend(data);
+        backpropagate.sendToFrontend(transcription);
       }
       
       // Remove files from the filecache directory

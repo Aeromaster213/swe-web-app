@@ -8,25 +8,40 @@ export default function Result() {
 
 
     async function getResult() {
+        let retries = 8; // Maximum number of retries
         try {
-            const response = await fetch("http://localhost:5001/api/result");
+            const response = await fetch("http://localhost:5001/api/results");
             if (!response.ok) {
-                console.log("error")
+                console.log("error");
                 console.error("error occurred:", response.statusText);
+                if (retries > 0) {
+                    // Retry the fetch after a delay (e.g., 3 seconds)
+                    setTimeout(() => {
+                        getResult();
+                    }, 3000);
+                    retries--;
+                } else {
+                    // Handle maximum retries exceeded
+                    console.error("Maximum retries exceeded");
+                }
+                return;
+            }
+            const results = await response.json();
+            console.log(response);
+            console.log(results);
+            setStrings(results);
+        } catch (error) {
+            console.error(error);
+            if (retries > 0) {
                 // Retry the fetch after a delay (e.g., 3 seconds)
                 setTimeout(() => {
                     getResult();
                 }, 3000);
-                return;
+                retries--;
+            } else {
+                // Handle maximum retries exceeded
+                console.error("Maximum retries exceeded");
             }
-            const results = await response.json(); // Await the response.json()
-            setStrings(results);
-        } catch (error) {
-            console.error(error);
-            // Retry the fetch after a delay (e.g., 3 seconds)
-            setTimeout(() => {
-                getResult();
-            }, 3000);
         }
     }
 
@@ -72,8 +87,8 @@ export default function Result() {
     }, [copiedTxt]);
 
     useEffect(() => {
-        return () => {setStrings()}
-    })
+        return () => { setStrings() }
+    }, [])
 
     return (
         <div className="result">
