@@ -1,0 +1,10 @@
+services:
+  backend:
+    ports:
+     - "5000:5000"
+     - "5001:5001"
+    image: transcribe_server:latest
+    volumes:
+      - back:/persistent
+volumes:
+    back:
