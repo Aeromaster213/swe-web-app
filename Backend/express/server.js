@@ -88,6 +88,7 @@ app.post("/api/upload", (req, res) => {
     cacheRename.renameFile(originalFileName, newFileName);
 
     // Check if the record already exists in the Babble collection
+    /*
     try {
       const existingRecord = await Babble.findOne({ id: newFileName });
       if (existingRecord) {
@@ -120,6 +121,7 @@ app.post("/api/upload", (req, res) => {
     } catch (error) {
       console.error("Error in transcription:", error);
     }
+    */
 /*
     transcriber.callModel(newFileName)
       .then(transcription => {
@@ -136,7 +138,13 @@ app.post("/api/upload", (req, res) => {
       .catch(error => {
         console.error("Error in transcription:", error);
       });
-*/
+*/  
+    const backpropagate = require('./functionals/backpropagate');
+    const srt = "This is the srt string";
+    const txt = "This is the txt string";
+    const data = { srt, txt };
+    backpropagate.sendToFrontend(data);
+
   });
 });
 
