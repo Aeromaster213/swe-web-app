@@ -45,11 +45,12 @@ Run the following commands in order
 cd Backend
 sudo docker-compose up # if using CUDA GPU accelerated inference -- recommended for performance
 sudo docker-compose -f compose-cpu.yml up # if using CPU
+node express/server.js
 ```
 (in new tab)
 ```bash
 cd Frontend
-npm i
+npm i 
 npm start
 ```
 Link to the repo: https://github.com/Aeromaster213/swe-web-app
