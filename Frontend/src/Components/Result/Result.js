@@ -29,6 +29,7 @@ export default function Result() {
             const results = await response.json();
             console.log(response);
             console.log(results);
+
             setStrings(results);
         } catch (error) {
             console.error(error);
@@ -102,7 +103,7 @@ export default function Result() {
                             className="copy-button"
                             onClick={() => copyTextToClipboard(strings.srt, "srt")}
                         >Copy Subtitles!</button>
-                        <p className="result-srt ">{strings.srt}</p>
+                        <p className="result-srt ">The SRT Feature will be available shortly</p>
                     </div>
                     <div className="result-box txt-box">
                         <button
