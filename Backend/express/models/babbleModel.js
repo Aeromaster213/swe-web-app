@@ -6,6 +6,6 @@ const babbleSchema = new mongoose.Schema({
   txt: String,
 });
 
-const Babble = mongoose.model('transcription', babbleSchema);
+const Babble = mongoose.model('transcriptions', babbleSchema);
 
 module.exports = Babble;
