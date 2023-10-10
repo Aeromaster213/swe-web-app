@@ -138,12 +138,12 @@ app.post("/api/upload", (req, res) => {
       .catch(error => {
         console.error("Error in transcription:", error);
       });
-        
-    const backpropagate = require('./functionals/backpropagate');
-    const srt = "This is the srt string";
-    const txt = "This is the txt string";
-    const data = { srt, txt };
-    backpropagate.sendToFrontend(data);
+
+    // const backpropagate = require('./functionals/backpropagate');
+    // const srt = "This is the srt string";
+    // const txt = "This is the txt string";
+    // const data = { srt, txt };
+    // backpropagate.sendToFrontend(data);
 
   });
 });
