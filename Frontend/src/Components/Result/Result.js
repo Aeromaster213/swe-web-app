@@ -9,7 +9,7 @@ export default function Result() {
 
     async function getResult() {
         try {
-            const response = await fetch("http://localhost:5001/api/results");
+            const response = await fetch("http://localhost:5001/api/result");
             if (!response.ok) {
                 console.log("error")
                 console.error("error occurred:", response.statusText);
@@ -70,6 +70,10 @@ export default function Result() {
 
         }
     }, [copiedTxt]);
+
+    useEffect(() => {
+        return () => {setStrings()}
+    })
 
     return (
         <div className="result">
