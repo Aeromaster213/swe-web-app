@@ -29,9 +29,11 @@ Use Cases            : [link](https://docs.google.com/document/d/1GQMLbYJCmfG9JF
 Weekly Status Report : [link](https://docs.google.com/document/d/1jDemDmnepd8-6kNmyRCfemr_Mmsws3XKXDsyNfvufzM/edit?usp=drivesdk)
 <br>
 Design               : [link](https://docs.google.com/document/d/181ZK64r7MhxgnhrBuxd3HlSPzm74X-0rUi2LtAZmsc4/edit?usp=drivesdk)
-## To Run the website ->
+## To run the website
 
 ### Compiling docker to create the image
+
+Install nvidia-container-runtime or its equivalent for your distribution to use CUDA acceleration
 
 ```bash
 set DOCKER_BUILDKIT=1
@@ -42,7 +44,7 @@ Run the following commands in order
 ```bash
 cd Backend
 sudo docker-compose up # if using CUDA GPU accelerated inference -- recommended for performance
-sudo docker run --rm -t transcribe_server:latest # if using CPU
+sudo docker-compose -f compose-cpu.yml up # if using CPU
 ```
 (in new tab)
 ```bash
