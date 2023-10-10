@@ -72,7 +72,7 @@ export default function Result() {
     }, [copiedTxt]);
 
     useEffect(() => {
-        return () => {setStrings(strings)}
+        return () => {setStrings()}
     })
 
     return (
