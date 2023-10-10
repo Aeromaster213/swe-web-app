@@ -54,9 +54,9 @@ mongoose.connect(uri).then(()=>{
   });
 });
 
-app.listen(backport, () => {
-  console.log(`Backpropagation server running on http://localhost:${backport}`);
-});
+// app.listen(backport, () => {
+//   console.log(`Backpropagation server running on http://localhost:${backport}`);
+// });
 
 // Import the uploader and renaming module
 const uploader = require('./functionals/uploader');
@@ -88,7 +88,6 @@ app.post("/api/upload", (req, res) => {
     cacheRename.renameFile(originalFileName, newFileName);
 
     // Check if the record already exists in the Babble collection
-    /*
     try {
       const existingRecord = await Babble.findOne({ id: newFileName });
       if (existingRecord) {
@@ -121,7 +120,7 @@ app.post("/api/upload", (req, res) => {
     } catch (error) {
       console.error("Error in transcription:", error);
     }
-    */
+    
 /*
     transcriber.callModel(newFileName)
       .then(transcription => {
