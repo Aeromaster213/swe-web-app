@@ -132,6 +132,7 @@ app.post("/api/upload", (req, res) => {
         const txt = transcription;
 
         const data = { srt, txt };
+        console.log("Data to be sent: " + data);
         backpropagate.sendToFrontend(data);
         fs.emptyDirSync('./filecache');
       })
