@@ -18,79 +18,73 @@
 }
 
 .circle {
+    position: absolute;
     border-radius: 50%;
     z-index: 0;
+    transition: all ease;
 }
 
 #c1 {
-    position: absolute;
     width: 54px;
     height: 54px;
-    top: 560px;
-    left: 111px;
+    top: 40%;
+    left: 30%;
     background: #8AD0DF;
 }
 
 #c2 {
-    position: absolute;
     width: 37px;
     height: 37px;
-    top: 141px;
-    left: 911px;
+    top: 30%;
+    left: 40%;
     background: #0075FF;
 }
 
 #c3 {
-    position: absolute;
     width: 72px;
     height: 72px;
-    top: 55px;
-    left: 1172px;
+    top: 10%;
+    left: 70%;
     background: #8080D7;
 }
 
 #c4 {
-    position: absolute;
     width: 107px;
     height: 107px;
-    top: 461px;
-    left: 446px;
+    top: 70%;
+    left: 60%;
     background: #FFFFFF;
 }
 
 #c5 {
-    position: absolute;
     width: 21px;
     height: 21px;
-    top: 488px;
-    left: 964px;
+    top: 90%;
+    left: 50%;
     background: #8AD0DF;
 }
 
 #c6 {
-    position: absolute;
     width: 54px;
     height: 54px;
-    top: 584px;
-    left: 1244px;
+    top: 55%;
+    left: 75%;
     background: #D9D9D9;
 }
 
 #c7 {
-    position: absolute;
     width: 29px;
     height: 29px;
-    top: 07px;
-    left: 431px;
+    top: 20%;
+    left: 5%;
     background: #AAD9D9;
 }
 
 #c8 {
-    position: absolute;
     width: 23px;
     height: 23px;
-    top: 207px;
-    left: 228px;
+    top: 60%;
+    left: 20%;
     background: #9747FF;
 }
 
@@ -105,6 +99,7 @@
 .about-text p {
     margin: 0;
     padding: 0;
+    font-size: 80px;
 }
 
 .magic {

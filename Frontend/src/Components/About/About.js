@@ -6,14 +6,47 @@ import './about.css';
 export default function About() {
     const aboutRef = useRef(null);
 
+    const circlePosFinal = [
+        { top: '30', left: '5' },
+        { top: '5', left: '60' },
+        { top: '20', left: '90' },
+        { top: '80', left: '30' },
+        { top: '70', left: '70' },
+        { top: '65', left: '95' },
+        { top: '10', left: '30' },
+        { top: '60', left: '20' }
+    ];
+
+    const circlePosInit = [
+        { top: '40', left: '30' },
+        { top: '30', left: '40' },
+        { top: '10', left: '70' },
+        { top: '70', left: '60' },
+        { top: '90', left: '50' },
+        { top: '55', left: '75' },
+        { top: '20', left: '5' },
+        { top: '60', left: '20' },
+    ];
+
     useEffect(() => {
         const handleScroll = () => {
-            const c1 = document.getElementById('c1');
             let refPoint = aboutRef.current;
             if (refPoint) {
-                let scrollVal = window.scrollY - refPoint.getBoundingClientRect().top;
-                // c1.style.left = scrollVal * 2.5 + 'px';
-                // c1.style.marginTop = scrollVal / 3 + 'px';
+                let scrollVal = window.scrollY;
+                let documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                let scrollValPer = scrollVal / documentHeight;
+
+                scrollValPer = Math.min(scrollValPer, 1);
+                scrollValPer = Math.max(scrollValPer, 0);
+                console.log(scrollValPer);
+
+                circlePosFinal.forEach((pos, index) => {
+                    const initPos = circlePosInit[index];
+                    let circle = document.getElementById(`c${index + 1}`);
+                    circle.style.top = `${Number(initPos.top) - Number(initPos.top) * (scrollValPer) + Number(pos.top) - Number(pos.top) * (1-scrollValPer)}%`;
+                    circle.style.left = `${Number(initPos.left) - Number(initPos.left) * (scrollValPer) + Number(pos.left) - Number(pos.left) * (1-scrollValPer)}%`;
+                })
+
                 console.log("Moving!");
             }
         };
@@ -21,6 +54,8 @@ export default function About() {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     window.addEventListener('scroll', handleScroll);
+                } else {
+                    window.removeEventListener('scroll', handleScroll);
                 }
             });
         });
@@ -38,42 +73,16 @@ export default function About() {
         };
     }, []);
 
-    // let index = 0, interval = 1000;
-
-    // const rand = (min, max) =>
-    //     Math.floor(Math.random() * (max - min + 1)) + min;
-
-    // const animate = (star) => {
-    //     star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
-    //     star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
-    //     console.log(star);
-    //     star.style.animation = "none";
-    //     void star.offsetHeight;
-    //     star.style.animation = "";
-    // }
-
-    // useEffect(() => {
-    //     for (const star of document.getElementsByClassName("magic-star")) {
-    //         setTimeout(() => {
-    //             animate(star);
-    //             setInterval(() => animate(star), 1000);
-    //         }, index++ * (interval / 3));
-    //     }
-    // })
-
     return (
         <div ref={aboutRef} id="about" className="about">
             <div className="about-text">
                 <p>We use <span className="magic">
-                    {/* <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span>
-                    <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span>
-                    <span className="magic-star"><FontAwesomeIcon icon={faStar} /></span> */}
                     <span className="magic-text">AI-Powered </span> </span> Tools</p>
                 <p>to convert media files </p>
                 <p>into text</p>
             </div>
-            {Array.from({length:9}).slice(1).map((num, index)=>{
-                return <div className="circle" key={index+1} id={`c${index+1}`}>{index+1}</div>
+            {Array.from({ length: 9 }).slice(1).map((num, index) => {
+                return <div className="circle" key={index + 1} id={`c${index + 1}`}></div>
             })}
         </div >
     );
