@@ -54,9 +54,6 @@ mongoose.connect(uri).then(()=>{
   });
 });
 
-// app.listen(backport, () => {
-//   console.log(`Backpropagation server running on http://localhost:${backport}`);
-// });
 
 // Import the uploader and renaming module
 const uploader = require('./functionals/uploader');
