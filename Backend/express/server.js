@@ -93,13 +93,17 @@ app.post("/api/upload", (req, res) => {
       const existingRecord = await Babble.findOne({ id: newFileName });
       if (existingRecord) {
         // Use existing data
-        const srt = existingRecord.srt;
-        const txt = existingRecord.txt;
+        var srt = existingRecord.srt;
+        var txt = existingRecord.txt;
         console.log("Using existing data");
         
-        const backpropagate = require('./functionals/backpropagate');
-        const data = { srt, txt };
-        backpropagate.sendToFrontend(txt);
+        //const backpropagate = require('./functionals/backpropagate');
+        var data = { srt, txt };
+        //backpropagate.sendToFrontend(txt);
+
+        // Send the data to the frontend
+        res.json(data);
+
       } else {
         // Initiate transcription
         const transcription = await transcriber.callModel(newFileName);
@@ -109,17 +113,23 @@ app.post("/api/upload", (req, res) => {
         const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
         await newRecord.save();
 
-        const backpropagate = require('./functionals/backpropagate');
-        const srt = "This is the srt string";
-        const txt = transcription;
-        const data = { srt, txt };
-        backpropagate.sendToFrontend(transcription);
+        // const backpropagate = require('./functionals/backpropagate');
+        var srt = "This is the srt string";
+        var txt = transcription;
+        var data = { srt, txt };
+        // backpropagate.sendToFrontend(transcription);
+
+        // Send the data to the frontend
+        res.json(data);
+
       }
       
       // Remove files from the filecache directory
       fs.emptyDirSync('./filecache');
+
     } catch (error) {
       console.error("Error in transcription:", error);
+      res.status(500).send('Internal Server Error');
     }
     
 
