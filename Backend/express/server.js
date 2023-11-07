@@ -159,5 +159,3 @@ app.post("/api/upload", (req, res) => {
 });
 
 module.exports = {connection};
-
-
