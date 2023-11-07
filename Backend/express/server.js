@@ -20,7 +20,7 @@ else{
 // Initializing variables
 const app = express(); // creating instance of express app
 const port = process.env.PORT || 5000;
-const backport = process.env.BACKPORT || 5001;
+//const backport = process.env.BACKPORT || 5001;
 
 // Middleware
 app.use(cors());
@@ -76,7 +76,7 @@ app.use("/test", testRouter); // Test route
 const babbleRouter = require("./routes/babbleroute");
 app.use("/babble", babbleRouter); // Transcription route
 
-app.post("/api/upload", (req, res) => {
+app.post("/api/upload",  (req, res) => {
   uploader.handleUpload(req, res, async (hash, originalFileName) => {
     // Pass the hash to the cache handler or perform any other operations
     const newFileName = `${hash}${path.extname(originalFileName)}`;
@@ -84,22 +84,25 @@ app.post("/api/upload", (req, res) => {
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
 
+    let data;
+    let srt;
+    let txt;
+
     // Check if the record already exists in the Babble collection
-    
     try {
+      console.log("Existing record:");
       const existingRecord = await Babble.findOne({ id: newFileName });
+      
       if (existingRecord) {
         // Use existing data
-        var srt = existingRecord.srt;
-        var txt = existingRecord.txt;
-        console.log("Using existing data");
+        srt = existingRecord.srt;
+        txt = existingRecord.txt;
+        console.log(srt, txt);
+        // console.log("Using existing data");
+        
         
         //const backpropagate = require('./functionals/backpropagate');
-        var data = { srt, txt };
         //backpropagate.sendToFrontend(txt);
-
-        // Send the data to the frontend
-        res.json(data);
 
       } else {
         // Initiate transcription
@@ -111,24 +114,32 @@ app.post("/api/upload", (req, res) => {
         await newRecord.save();
 
         // const backpropagate = require('./functionals/backpropagate');
-        var srt = "This is the srt string";
-        var txt = transcription;
-        var data = { srt, txt };
+        srt = "This is the srt string";
+        txt = transcription;
+        
         // backpropagate.sendToFrontend(transcription);
-
-        // Send the data to the frontend
-        res.json(data);
-
       }
       
-      // Remove files from the filecache directory
-      fs.emptyDirSync('./filecache');
+      data = { srt, txt };
+      console.log("Data to be sent: " + data);
+      
 
     } catch (error) {
       console.error("Error in transcription:", error);
       res.status(500).send('Internal Server Error');
+    } finally {
+      // Remove files from the filecache directory
+      fs.emptyDirSync('./filecache');
     }
     
+    // Send the data to the frontend
+    res.json(data);
+    
+  });
+});
+
+module.exports = {connection};
+
 
 /*
     transcriber.callModel(newFileName)
@@ -154,10 +165,3 @@ app.post("/api/upload", (req, res) => {
     // const txt = "This is the txt string";
     // const data = { srt, txt };
     // backpropagate.sendToFrontend(data);
-
-  });
-});
-
-module.exports = {connection};
-
-

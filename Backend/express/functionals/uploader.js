@@ -44,8 +44,7 @@ function handleUpload(req, res, callback) {
     // Generate hash for the file
     const hash = generateFileHash(filePath);
 
-    // Respond with the hash
-    res.json({ hash });
+    
     //console.log(hash);
 
     // Pass the hash back to the callback function
@@ -58,6 +57,9 @@ function handleUpload(req, res, callback) {
       const originalFileName = req.file.originalname;
       callback(hash, originalFileName);
     }
+
+    // Respond with the hash
+    //res.json({ hash });
 
   });
 }
