@@ -1,5 +1,9 @@
 import React, {useEffect, useState} from "react";
+
+
 import "./result.css"; // Import the CSS file
+
+
 
 export default function Result() {
     const [strings, setStrings] = useState({}); // Initialize with an empty object
@@ -10,13 +14,29 @@ export default function Result() {
     async function getResult() {
         try {
             const response = await fetch("http://localhost:5001/api/upload");
+            console.log(response);
+            return response;
         } catch (error) {
             console.log("Not Uploaded");
+            return error;
         }
     }
 
+    // useEffect(() => {
+    //     getResult().then((response) => response.json().then((data) => setStrings(data)))
+    // }, []);
+
     useEffect(() => {
-        getResult().then((response) => response.json().then((data) => setStrings(data)))
+        getResult()
+            .then((response) => {
+                if (response.ok) {
+                    return response.json(); // Return the parsed JSON if response is ok
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .then((data) => setStrings(data))
+            .catch((error) => console.error(error)); // Handle any errors
     }, []);
 
 
