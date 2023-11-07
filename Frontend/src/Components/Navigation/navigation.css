@@ -31,6 +31,7 @@
 .nav-links-item{
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .nav-links-text{
