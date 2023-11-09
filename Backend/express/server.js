@@ -102,27 +102,30 @@ app.post("/api/upload",  (req, res) => {
         console.log(srt, txt);
         // console.log("Using existing data");
         
+        data = { srt, txt };
+        
         
         //const backpropagate = require('./functionals/backpropagate');
         //backpropagate.sendToFrontend(txt);
 
       } else {
         // Initiate transcription
-        const transcription = await transcriber.callModel(newFileName);
-        console.log("Transcription:", transcription);
+        // const transcription = await transcriber.callModel(newFileName);
+        data = await transcriber.callModel(newFileName);
+        console.log("Transcription:", data);
 
         // Save the transcription in the Babble collection
-        const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
-        await newRecord.save();
+        //const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
+        //await newRecord.save();
 
         // const backpropagate = require('./functionals/backpropagate');
-        srt = "This is the srt string";
-        txt = transcription;
+        //srt = "This is the srt string";
+        //txt = transcription;
         
         // backpropagate.sendToFrontend(transcription);
       }
       
-      data = { srt, txt };
+      
       console.log("Data to be sent: " + JSON.stringify(data));
       // data = JSON.stringify(data);
 
