@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { useUploadContext } from "../../Context/UploadContext";
 
 
 import "./result.css"; // Import the CSS file
@@ -6,38 +7,22 @@ import "./result.css"; // Import the CSS file
 
 
 export default function Result() {
-    const [strings, setStrings] = useState({}); // Initialize with an empty object
+    const {strings} = useUploadContext();
     const [copiedSrt, setCopiedSrt] = useState(false);
     const [copiedTxt, setCopiedTxt] = useState(false);
-
-
-    async function getResult() {
-        try {
-            const response = await fetch("http://localhost:5001/api/upload");
-            console.log(response);
-            return response;
-        } catch (error) {
-            console.log("Not Uploaded");
-            return error;
-        }
-    }
-
-    // useEffect(() => {
-    //     getResult().then((response) => response.json().then((data) => setStrings(data)))
-    // }, []);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
-        getResult()
-            .then((response) => {
-                if (response.ok) {
-                    return response.json(); // Return the parsed JSON if response is ok
-                } else {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .then((data) => setStrings(data))
-            .catch((error) => console.error(error)); // Handle any errors
-    }, []);
+        console.log("Result component mounted");
+        console.log("strings:", strings);
+        if (strings) {
+            setData(strings);
+        }
+    }, [strings]);
+
+    useEffect(() => {
+        console.log("Result component mounted");
+    }, [strings]);
 
 
     useEffect(() => {
@@ -76,15 +61,10 @@ export default function Result() {
         }
     }, [copiedTxt]);
 
-    useEffect(() => {
-        return () => {
-            setStrings()
-        }
-    }, [])
 
     return (
         <div className="result">
-            {strings ? (
+            {data ? (
                 <div className="result-container">
                     <div className="result-heading">
                         <p className="result-heading-text">
@@ -96,18 +76,18 @@ export default function Result() {
                     <div className="result-box srt-box">
                         <button
                             className="copy-button"
-                            onClick={() => copyTextToClipboard(strings.srt, "srt")}
+                            onClick={() => copyTextToClipboard(data.srt, "srt")}
                         >Copy Subtitles!
                         </button>
-                        <p className="result-srt ">The SRT Feature will be available shortly</p>
+                        <p className="result-srt ">{data.srt}</p>
                     </div>
                     <div className="result-box txt-box">
                         <button
                             className="copy-button"
-                            onClick={() => copyTextToClipboard(strings.txt, "txt")}
+                            onClick={() => copyTextToClipboard(data.txt, "txt")}
                         >Copy Text!
                         </button>
-                        <p className="result-txt">{strings.txt}</p>
+                        <p className="result-txt">{data.txt}</p>
                     </div>
                 </div>
             ) : (
