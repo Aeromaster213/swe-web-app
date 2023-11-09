@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useUploadContext } from "../../Context/UploadContext";
 
 
 import "./result.css"; // Import the CSS file
-
+const graphic = require("./assets/graphic.png");
 
 
 export default function Result() {
-    const {strings} = useUploadContext();
+    const { strings, fileName } = useUploadContext();
     const [copiedSrt, setCopiedSrt] = useState(false);
     const [copiedTxt, setCopiedTxt] = useState(false);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({ srt: "srt", txt: "txt" });
 
     useEffect(() => {
         console.log("Result component mounted");
@@ -66,44 +66,52 @@ export default function Result() {
         <div className="result">
             {data ? (
                 <div className="result-container">
-                    {/* <div className="result-box-wrap"> */}
-                        <div className="result-box">
-                            <div className="thumbnail"></div>
-                            <div className="details">
-                                <p>FILENAME: LOREM IPSUM</p>
-                                <p>FILESIZE: 25MB</p>
-                                <p>FILETYPE: AAC</p>
+                    <div className="result-info">
+                        <div className="infobox">
+                            <div className="info-thumbnail"></div>
+                            <div className="info-details">
+                                <p>FILENAME: {fileName}</p>
+                                {/* <p>FILESIZE: 25MB</p>
+                                <p>FILETYPE: AAC</p> */}
                             </div>
                         </div>
-                    {/* </div> */}
-                    <div className="result-heading">
-                        <p className="result-heading-text">
-                            <text style={{color: "#7a7acd"}}>Y</text>
-                            our <text style={{color: "#7a7acd"}}>T</text>ranscription <text
-                            style={{color: "#7a7acd"}}>I</text>s <text style={{color: "#7a7acd"}}>H</text>ere!
-                        </p>
+
+                        <div className="result-heading">
+                            <p className="result-heading-text">
+                                Your Translation is ready!
+                            </p>
+                        </div>
                     </div>
-                    <div className="result-box srt-box">
-                        <button
-                            className="copy-button"
-                            onClick={() => copyTextToClipboard(strings.srt, "srt")}
-                        >Copy Subtitles!
-                        </button>
-                        <p className="result-srt ">The SRT Feature will be available shortly</p>
-                    </div>
-                    <div className="result-box txt-box">
-                        <button
-                            className="copy-button"
-                            onClick={() => copyTextToClipboard(strings.txt, "txt")}
-                        >Copy Text!
-                        </button>
-                        <p className="result-txt">{strings.txt}</p>
+                    <div className="result-section">
+                        <div className="result-box result-srt">
+                            <div
+                                className="copy-button"
+                                onClick={() => copyTextToClipboard(data.srt, "srt")}
+                            >Copy Subtitle
+                            </div>
+                            <div className="result-res">
+                                <p className="result-text ">{data.srt}</p>
+                            </div>
+                        </div>
+                        <div className="result-graphic">
+                            <img src={graphic} alt="Graphic"></img>
+                        </div>
+                        <div className="result-box result-txt">
+                            <div
+                                className="copy-button"
+                                onClick={() => copyTextToClipboard(data.txt, "txt")}
+                            >Copy Text
+                            </div>
+                            <div className="result-res">
+                                <p className="result-text">{data.txt}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             ) : (
                 <h1 className="result-wait-text">Fetching The Results</h1>
             )
-            } 
+            }
         </div >
     );
 }
