@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { useUploadContext } from "../../Context/UploadContext";
 
 
 import "./result.css"; // Import the CSS file
@@ -9,23 +10,17 @@ export default function Result() {
     const { strings, fileName } = useUploadContext();
     const [copiedSrt, setCopiedSrt] = useState(false);
     const [copiedTxt, setCopiedTxt] = useState(false);
-
-
-    async function getResult() {
-        try {
-            const response = await fetch("http://localhost:5001/api/upload");
-            console.log(response);
-            return response;
-        } catch (error) {
-            console.log("Not Uploaded");
-            return error;
-        }
-    }, [strings]);
-    }, [strings]);
+    const [data, setData] = useState({ srt: "srt", txt: "txt" });
 
     useEffect(() => {
         console.log("Result component mounted");
+        console.log("strings:", strings);
+        if (strings) {
+            setData(strings);
+        }
     }, [strings]);
+
+    useEffect(() => {
         console.log("Result component mounted");
     }, [strings]);
 
@@ -69,7 +64,7 @@ export default function Result() {
 
     return (
         <div className="result">
-            {strings ? (
+            {data ? (
                 <div className="result-container">
                     <div className="result-info">
                         <div className="infobox">
@@ -80,34 +75,36 @@ export default function Result() {
                                 <p>FILETYPE: AAC</p> */}
                             </div>
                         </div>
-                    {/* </div> */}
-                    <div className="result-heading">
-                        <p className="result-heading-text">YOUR TRANSCRIPT IS READY</p>
-                    </div>
-                    <div className="buttons">
-                        <div className="result-box txt-box">
-                            <button
-                                className="copy-button"
-                                onClick={() => copyTextToClipboard(strings.txt, "txt")}
-                            ></button>
-                            <p className="result-txt">COPY TXT</p>
-                            {strings.txt}
-                        </div>
-                        <div className="result-box srt-box">
-                            <button
-                                className="copy-button"
-                                onClick={() => copyTextToClipboard(strings.srt, "srt")}
-                            ></button>
-                            <p className="result-srt ">COPY SRT</p>
+
+                        <div className="result-heading">
+                            <p className="result-heading-text">
+                                Your Translation is ready!
+                            </p>
                         </div>
                     </div>
-                    <div className="result-display">
-                        <div className="copied-txt">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div className="result-section">
+                        <div className="result-box result-srt">
+                            <div
+                                className="copy-button"
+                                onClick={() => copyTextToClipboard(data.srt, "srt")}
+                            >Copy Subtitle
+                            </div>
+                            <div className="result-res">
+                                <p className="result-text ">{data.srt}</p>
+                            </div>
                         </div>
-                        <div className="icon"></div>
-                        <div className="srtied-txt">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div className="result-graphic">
+                            <img src={graphic} alt="Graphic"></img>
+                        </div>
+                        <div className="result-box result-txt">
+                            <div
+                                className="copy-button"
+                                onClick={() => copyTextToClipboard(data.txt, "txt")}
+                            >Copy Text
+                            </div>
+                            <div className="result-res">
+                                <p className="result-text">{data.txt}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
