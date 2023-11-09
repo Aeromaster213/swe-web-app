@@ -108,6 +108,22 @@
     border-radius: 25px;
     background: #6666A380;
     padding: 20px;
+    overflow: auto;
+}
+
+.result-res::-webkit-scrollbar {
+    width: 10px;
+    background: #6666A380;
+    border-radius: 25px;
+}
+
+.result-res::-webkit-scrollbar-thumb {
+    background: #8080D7;
+    border-radius: 25px;
+}
+
+.result-res::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 .result-text {
