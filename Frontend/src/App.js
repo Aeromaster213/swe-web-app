@@ -13,7 +13,8 @@ function App() {
     <div className='app'>
       <Navigation />
       {showComponent?<Result />:<HeroSection />}
-      <CenterBox />
+      {/* <Result /> */}
+      {!showComponent?<CenterBox />:""}
       <About id="about" />
     </div>
   );

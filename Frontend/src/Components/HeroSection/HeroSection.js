@@ -32,7 +32,9 @@ export default function HeroSection() {
         else if (file.selectedFile) {
             console.log(file);
             const formData = new FormData();
+            const language = document.getElementById("language").value;
             formData.append('file', file.selectedFile, file.selectedFile.name);
+            formData.append('language', language);
 
             try {
                 const response = await fetch("http://localhost:5000/api/upload",
@@ -43,8 +45,8 @@ export default function HeroSection() {
                 )
                 if (response.ok) {
                     const data = await response.json();
-                    console.log("File Hash:", data.hash);
-                    handleUploadComplete(true);
+                    console.log("response:", JSON.stringify(data));
+                    handleUploadComplete(true, data, file.selectedFile.name);
                 } else {
                     console.error("Failed to upload")
                 }
@@ -77,6 +79,17 @@ export default function HeroSection() {
                     className="herosection-button"
                     onClick={handleButtonClick}
                 >{file ? file.selectedFile.name : "Select File"}</button>
+                <select id="language" className="herosection-button">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="zh">Chinese</option>
+                </select>
                 <button
                     type="button"
                     className="herosection-button"

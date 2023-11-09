@@ -23,7 +23,9 @@ const port = process.env.PORT || 5000;
 //const backport = process.env.BACKPORT || 5001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 app.use(express.json());
 
 
@@ -121,8 +123,8 @@ app.post("/api/upload",  (req, res) => {
       }
       
       data = { srt, txt };
-      console.log("Data to be sent: " + data);
-      
+      console.log("Data to be sent: " + JSON.stringify(data));
+      // data = JSON.stringify(data);
 
     } catch (error) {
       console.error("Error in transcription:", error);

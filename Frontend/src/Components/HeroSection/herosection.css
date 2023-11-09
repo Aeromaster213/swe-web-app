@@ -58,6 +58,11 @@
     cursor: pointer;
 }
 
+.herosection-buttons select {
+    text-align-last: center; /* For Firefox */
+    text-align: center; /* For other browsers */
+}
+
 .herosection-button-hidden {
     display: none;
 }
