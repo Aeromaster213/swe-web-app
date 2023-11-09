@@ -4,14 +4,9 @@ from os import path
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
-
-def transcribe_srt(model, file):
-    rslt = whisper.transcribe(model, "filecache/"+file)
-    return rslt["text"]
-
 def remote(file):
     model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
-    print(whisper.transcribe(model, file)["text"])
+    print(whisper.transcribe(model, file))
 
 if __name__=="__main__":
     print("Model test loaded!")
