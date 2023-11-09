@@ -82,6 +82,10 @@ app.post("/api/upload",  (req, res) => {
   uploader.handleUpload(req, res, async (hash, originalFileName) => {
     // Pass the hash to the cache handler or perform any other operations
     const newFileName = `${hash}${path.extname(originalFileName)}`;
+    
+    const language = req.body.language;
+    
+    console.log("Language: ", language);
 
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
@@ -111,8 +115,12 @@ app.post("/api/upload",  (req, res) => {
       } else {
         // Initiate transcription
         // const transcription = await transcriber.callModel(newFileName);
-        data = await transcriber.callModel(newFileName);
-        console.log("Transcription:", data);
+        var transcription = await transcriber.callModel(newFileName, language);
+        console.log(transcription);
+        console.log(transcription[90]);
+        data = JSON.parse(transcription);
+        console.log("Subtitle:", data.srt);
+        console.log("Text: ", data.txt);
 
         // Save the transcription in the Babble collection
         //const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
