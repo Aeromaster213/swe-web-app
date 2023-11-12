@@ -1,8 +1,26 @@
 import torch, whisper
 import pathlib
 from os import path
-
+from torch import hub
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+hub.set_dir("/persistent/")
+
+def translation(inp):
+
+    # Load a transformer trained on WMT'16 En-De
+    # Note: WMT'19 models use fastBPE instead of subword_nmt, see instructions below
+    #torch.hub.download_url_to_file('https://github.com/pytorch/fairseq/zipball/main', '/persistent/fairseq')
+    en2de = torch.hub.load('pytorch/fairseq', 'transformer.wmt16.en-de',
+                        tokenizer='moses', bpe='subword_nmt')
+    en2de.eval()  # disable dropout
+
+    # The underlying model is available under the *models* attribute
+    #assert isinstance(en2de.models[0], fairseq.models.transformer.TransformerModel)
+
+    # Move model to GPU for faster translation
+    if DEVICE == "cuda":
+        en2de.cuda()
+    return en2de.translate(inp)
 
 def format_srt(transcript):
     srt_output = ""
@@ -23,7 +41,7 @@ def format_srt(transcript):
 def remote(file, language):
     model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
     rslt=whisper.transcribe(model, file)
-    print("{\"txt\": \""+rslt["text"], end="\", ")
+    print("{\"txt\": \""+translation(rslt["text"]), end="\", ")
     print("\"srt\": \""+format_srt(rslt), end="\"}")
 
 if __name__=="__main__":
@@ -32,27 +50,3 @@ if __name__=="__main__":
     for f in pathlib.Path("samples/").iterdir():
         print(str(f))
         print(transcribe_srt(model, f))
-
-def translation(in):
-    # List available models
-    torch.hub.list('pytorch/fairseq')  # [..., 'transformer.wmt16.en-de', ... ]
-
-    # Load a transformer trained on WMT'16 En-De
-    # Note: WMT'19 models use fastBPE instead of subword_nmt, see instructions below
-    en2de = torch.hub.load('pytorch/fairseq', 'transformer.wmt16.en-de',
-                        tokenizer='moses', bpe='subword_nmt')
-    en2de.eval()  # disable dropout
-
-    # The underlying model is available under the *models* attribute
-    #assert isinstance(en2de.models[0], fairseq.models.transformer.TransformerModel)
-
-    # Move model to GPU for faster translation
-    if(DEVICE == "cuda")
-        en2de.cuda()
-    # Translate a sentence
-    #en2de.translate('Hello world!')
-    # 'Hallo Welt!'
-
-    # Batched translation
-    #en2de.translate(['Hello world!', 'The cat sat on the mat.'])
-    # ['Hallo Welt!', 'Die Katze saß auf der Matte.']

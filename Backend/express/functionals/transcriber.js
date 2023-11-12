@@ -2,7 +2,7 @@ const { spawn } = require("child_process")
 
 function callModel(file, language) {
     return new Promise((resolve, reject) => {
-      const ml = spawn("python", ["-c", `from ml import *; remote("filecache/"+"${file}", ${language})`])
+      const ml = spawn("python", ["-c", `from ml import *; remote("filecache/"+"${file}", "${language}")`])
       console.log("Transcription started");
       var dataOUT = '';
   

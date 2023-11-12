@@ -1,13 +1,10 @@
 FROM python:3.9
-RUN python3 -m venv /pycache
-RUN . /pycache/bin/activate
+ENV PIP_HOME=/pycache
 RUN apt update
 RUN --mount=type=cache,target=/pycache pip3 install openai-whisper
-RUN apt-get install -y ffmpeg
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm 
-RUN apt-get install -y git
-RUN apt-get install -y bash
+RUN apt-get install -y ffmpeg nodejs npm git bash
+RUN --mount=type=cache,target=/pycache pip3 install Cython 
+RUN --mount=type=cache,target=/pycache pip3 install fastBPE sacremoses subword_nmt fairseq scikit-learn tensorboardX
 
 COPY express/ /code
 
