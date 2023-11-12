@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
-import { useUploadContext } from "../../Context/UploadContext";
+import React, {useRef, useState} from "react";
+import {useUploadContext} from "../../Context/UploadContext";
 import './herosection.css';
+import LoadingSpinner from "../Loading/Loading";
 
 const heroimage = require('./Images/heroimage.png')
 
@@ -9,10 +10,11 @@ export default function HeroSection() {
 
     const pickerRef = useRef(null);
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
-        setFile({ selectedFile: e.target.files[0] });
+        setFile({selectedFile: e.target.files[0]});
         if (selectedFile) {
             console.log("Selected file name:", selectedFile.name);
             // You can now do something with the selected file, such as uploading it.
@@ -28,7 +30,7 @@ export default function HeroSection() {
     }
 
     const handleUpload = async () => {
-        if(!file) window.alert("Select A file first")
+        if (!file) window.alert("Select A file first")
         else if (file.selectedFile) {
             console.log(file);
             const formData = new FormData();
@@ -43,7 +45,9 @@ export default function HeroSection() {
                         body: formData,
                     }
                 )
+                setLoading(true);
                 if (response.ok) {
+                    setLoading(false);
                     const data = await response.json();
                     console.log("response:", JSON.stringify(data));
                     handleUploadComplete(true, data, file.selectedFile.name);
@@ -53,44 +57,55 @@ export default function HeroSection() {
             } catch (error) {
                 console.error("Could not upload:", error);
             }
-        }
-        else {
+        } else {
             console.log("File not selected");
         }
     }
 
     return (
         <div className="herosection-container">
-            <div className="herosection-text translate"><text style={{ color: "#8080D7" }}>T</text>RANSLATE</div>
-            <div className="herosection-text transcribe"><text style={{ color: "#8080D7" }}>T</text>RANSCRIBE</div>
-            <div className="herosection-image">
-                <img src={heroimage} alt="heroimage" />
-            </div>
-            <div className="herosection-buttons">
-                <input
-                    type="file"
-                    accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
-                    ref={pickerRef}
-                    onChange={handleFileChange}
-                    style={{ display: 'none' }}
-                />
-                <button
-                    type="button"
-                    className="herosection-button"
-                    onClick={handleButtonClick}
-                >{file ? file.selectedFile.name : "Select File"}</button>
-                <select id="language" className="herosection-button">
-                    <option value="nl">Native</option>
-                    <option value={"en"}>English</option>
-                    <option value="de">German</option>
-                    <option value="rs">Russian</option>
-                </select>
-                <button
-                    type="button"
-                    className="herosection-button"
-                    onClick={handleUpload}
-                >Upload File</button>
-            </div>
+            {!loading ? (
+                <>
+                    <div className="herosection-text translate">
+                        <text style={{color: "#8080D7"}}>T</text>
+                        RANSLATE
+                    </div>
+                    <div className="herosection-text transcribe">
+                        <text style={{color: "#8080D7"}}>T</text>
+                        RANSCRIBE
+                    </div>
+                    <div className="herosection-image">
+                        <img src={heroimage} alt="heroimage"/>
+                    </div>
+                    <div className="herosection-buttons">
+                        <input
+                            type="file"
+                            accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
+                            ref={pickerRef}
+                            onChange={handleFileChange}
+                            style={{display: 'none'}}
+                        />
+                        <button
+                            type="button"
+                            className="herosection-button"
+                            onClick={handleButtonClick}
+                        >{file ? file.selectedFile.name : "Select File"}</button>
+                        <select id="language" className="herosection-button">
+                            <option value="nl">Native</option>
+                            <option value={"en"}>English</option>
+                            <option value="de">German</option>
+                            <option value="rs">Russian</option>
+                        </select>
+                        <button
+                            type="button"
+                            className="herosection-button"
+                            onClick={handleUpload}
+                        >Upload File
+                        </button>
+                    </div>
+                </>) : (
+                <LoadingSpinner/>
+            )}
         </div>
     );
 }
