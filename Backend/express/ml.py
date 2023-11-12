@@ -9,7 +9,7 @@ models = {"de": 'transformer.wmt16.en-de', "fr": 'transformer.wmt14.en-fr'}
 def translation(inp, lang):
     if lang=="en": #We're doing En->X translations
         return inp
-    en2de = torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt')
+    en2de = torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt', max_source_positions=8192, max_target_position=8192)
     en2de.eval()  # disable dropout
     if DEVICE == "cuda":
         en2de.cuda()

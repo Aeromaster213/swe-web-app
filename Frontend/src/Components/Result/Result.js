@@ -65,6 +65,7 @@ export default function Result() {
     return (
         <div className="result">
             {data ? (
+
                 <div className="result-container">
                     <div className="result-info">
                         <div className="infobox">
