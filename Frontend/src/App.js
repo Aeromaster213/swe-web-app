@@ -3,21 +3,20 @@ import Navigation from './Components/Navigation/Navigation.js';
 import HeroSection from './Components/HeroSection/HeroSection';
 import CenterBox from './Components/CenterBox/CenterBox';
 import About from './Components/About/About';
-import { useUploadContext } from './Context/UploadContext';
+import {useUploadContext} from './Context/UploadContext';
 import Result from './Components/Result/Result';
+import React from 'react';
 
 function App() {
-  const {showComponent} = useUploadContext();
+    const {showComponent} = useUploadContext();
 
-  return (
-    <div className='app'>
-      <Navigation />
-      {showComponent?<Result />:<HeroSection />}
-      {/* <Result /> */}
-      {!showComponent?<CenterBox />:""}
-      <About id="about" />
-    </div>
-  );
+    return (<div className='app'>
+            <Navigation/>
+            {showComponent ? <Result/> : <HeroSection/>}
+            {/* <Result /> */}
+            {!showComponent ? <CenterBox/> : ""}
+            <About id="about"/>
+        </div>);
 }
 
 export default App;
