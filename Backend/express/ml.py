@@ -33,7 +33,7 @@ def format_srt(transcript):
 
 def remote(file, language):
     model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
-    if language=="nl":
+    if language=="nl" or language=="en":
         rslt=whisper.transcribe(model, file)
         print("{\"txt\": \""+rslt["text"], end="\", ")
         print("\"srt\": \""+format_srt(rslt), end="\"}")
