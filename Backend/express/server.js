@@ -123,14 +123,9 @@ app.post("/api/upload",  (req, res) => {
         console.log("Text: ", data.txt);
 
         // Save the transcription in the Babble collection
-        //const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
-        //await newRecord.save();
+        const newRecord = new Babble({ id: newFileName, srt: "", txt: transcription });
+        await newRecord.save();
 
-        // const backpropagate = require('./functionals/backpropagate');
-        //srt = "This is the srt string";
-        //txt = transcription;
-        
-        // backpropagate.sendToFrontend(transcription);
       }
       
       
@@ -154,27 +149,3 @@ app.post("/api/upload",  (req, res) => {
 module.exports = {connection};
 
 
-/*
-    transcriber.callModel(newFileName)
-      .then(transcription => {
-        console.log("Transcription:", transcription);
-
-        const backpropagate = require('./functionals/backpropagate');
-        const srt = "This is the srt string";
-        const txt = transcription;
-
-        const data = { srt, txt };
-        console.log("Data to be sent: " + data);
-        backpropagate.sendToFrontend(data);
-        fs.emptyDirSync('./filecache');
-      })
-      .catch(error => {
-        console.error("Error in transcription:", error);
-      });
-*/
-
-    // const backpropagate = require('./functionals/backpropagate');
-    // const srt = "This is the srt string";
-    // const txt = "This is the txt string";
-    // const data = { srt, txt };
-    // backpropagate.sendToFrontend(data);
