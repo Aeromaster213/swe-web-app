@@ -81,15 +81,9 @@ export default function HeroSection() {
                 >{file ? file.selectedFile.name : "Select File"}</button>
                 <select id="language" className="herosection-button">
                     <option value="nl">Native</option>
-                    <option value="en">English</option>
-                    <option value="hi">Hindi</option>
-                    <option value="fr">French</option>
+                    <option value={"en"}>English</option>
                     <option value="de">German</option>
-                    <option value="es">Spanish</option>
-                    <option value="it">Italian</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                    <option value="zh">Chinese</option>
+                    <option value="rs">Russian</option>
                 </select>
                 <button
                     type="button"
