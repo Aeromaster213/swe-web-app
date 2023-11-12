@@ -80,6 +80,7 @@ export default function HeroSection() {
                     onClick={handleButtonClick}
                 >{file ? file.selectedFile.name : "Select File"}</button>
                 <select id="language" className="herosection-button">
+                    <option value="nl">Native</option>
                     <option value="en">English</option>
                     <option value="hi">Hindi</option>
                     <option value="fr">French</option>
