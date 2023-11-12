@@ -4,20 +4,13 @@ from os import path
 from torch import hub
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 hub.set_dir("/persistent/")
+models = {"de": 'transformer.wmt19.en-de', "ru": 'transformer.wmt19.en-ru'}
 
-def translation(inp):
-
-    # Load a transformer trained on WMT'16 En-De
-    # Note: WMT'19 models use fastBPE instead of subword_nmt, see instructions below
-    #torch.hub.download_url_to_file('https://github.com/pytorch/fairseq/zipball/main', '/persistent/fairseq')
-    en2de = torch.hub.load('pytorch/fairseq', 'transformer.wmt16.en-de',
-                        tokenizer='moses', bpe='subword_nmt')
+def translation(inp, lang):
+    if lang=="en": #We're doing En->X translations
+        return inp
+    en2de = torch.hub.load('pytorch/fairseq', models[lang], checkpoint_file='model1.pt:model2.pt:model3.pt:model4.pt', tokenizer='moses', bpe='fastbpe')
     en2de.eval()  # disable dropout
-
-    # The underlying model is available under the *models* attribute
-    #assert isinstance(en2de.models[0], fairseq.models.transformer.TransformerModel)
-
-    # Move model to GPU for faster translation
     if DEVICE == "cuda":
         en2de.cuda()
     return en2de.translate(inp)
@@ -40,9 +33,15 @@ def format_srt(transcript):
 
 def remote(file, language):
     model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
-    rslt=whisper.transcribe(model, file)
-    print("{\"txt\": \""+translation(rslt["text"]), end="\", ")
-    print("\"srt\": \""+format_srt(rslt), end="\"}")
+    if language=="nl":
+        rslt=whisper.transcribe(model, file)
+        print("{\"txt\": \""+rslt["text"], end="\", ")
+        print("\"srt\": \""+format_srt(rslt), end="\"}")
+    else:
+        options = whisper.DecodingOptions(task="translate")
+        rslt=whisper.decode(model, file, options)
+        print("{\"txt\": \""+translation(rslt["text"], language), end="\", ")
+        print("\"srt\": \""+translation(format_srt(rslt), language), end="\"}")
 
 if __name__=="__main__":
     print("Model test loaded!")

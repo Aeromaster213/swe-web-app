@@ -14,4 +14,5 @@ WORKDIR /code
 RUN npm i
 EXPOSE 5001
 EXPOSE 5000
+ENV TORCH_HOME=/persistent
 CMD node server.js
