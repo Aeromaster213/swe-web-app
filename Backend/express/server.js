@@ -153,6 +153,9 @@ app.post("/api/upload",  (req, res) => {
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
 
+    const parts = newFileName.split(".");
+    const extension = parts[parts.length - 1];
+
     let data;
     let srt;
     let txt;
