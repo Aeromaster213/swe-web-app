@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs-extra");
 const bcrypt = require("bcrypt");
+const iconv = require('iconv-lite');
 
 // Load environment variables from .env
 dotenv.config(); 
@@ -179,10 +180,16 @@ app.post("/api/upload",  (req, res) => {
       } else {
         // Initiate transcription
         // const transcription = await transcriber.callModel(newFileName);
-        var transcription = await transcriber.callModel(newFileName, language);
+        let transcription;
+        if (extension === "txt"){
+          transcription = await transcriber.callText(newFileName, language);
+        } else {
+          transcription = await transcriber.callMultimedia(newFileName, language);
+        }
         console.log(transcription);
         
-        data = JSON.parse(transcription);
+        const utf8String = iconv.decode(transcription, 'utf8');
+        data = JSON.parse(utf8String);
 
         console.log("Subtitle:", data.srt);
         console.log("Text: ", data.txt);
