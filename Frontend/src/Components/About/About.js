@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faStar } from '@fortawesome/free-solid-svg-icons'
+// import {useUploadContext} from "../../Context/UploadContext";
 import './about.css';
 
 export default function About() {

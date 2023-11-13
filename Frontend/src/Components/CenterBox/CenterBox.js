@@ -17,7 +17,7 @@ export default function CenterBox() {
                 </div>
                 <div className="centerbox-audio">
                     <img className={"centerbox-image"} src={wave} alt="Audio Wave Icon"></img>
-                    <p className="centerbox-text">MP3, WAV, FLAC, HEVC</p>
+                    <p className="centerbox-text">TXT, MP3, WAV, FLAC, HEVC</p>
                 </div>
             </div>
         </div>
