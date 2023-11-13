@@ -214,6 +214,8 @@ app.post("/api/upload",  (req, res) => {
   uploader.handleUpload(req, res, async (hash, originalFileName) => {
     // Rename the cache file into the hash string
     const newFileName = `${hash}${path.extname(originalFileName)}`;
+
+    console.log(originalFileName);
     
     // Extract language and username from the request body
     const language = req.body.language;
@@ -271,6 +273,7 @@ app.post("/api/upload",  (req, res) => {
         const newRecord = new Babble({
           id: newFileName, 
           user: username, 
+          file: originalFileName,
           language: language, 
           srt: data.srt, 
           txt: data.txt });
@@ -294,6 +297,23 @@ app.post("/api/upload",  (req, res) => {
     res.json(data);
     
   });
+});
+
+
+
+// Get all transcriptions for a specific user
+app.get("/api/getDetails", async (req, res) => {
+  try {
+    const { user } = req.query;
+    if (!user) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    const result = await Babble.findByUser(user);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 module.exports = {connection};

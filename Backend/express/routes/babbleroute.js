@@ -60,5 +60,17 @@ recordRoutes.route("/babbleroute").get(async function (req, res) {
       res.status(400).json({ message: err.message });
     }
   });
+
+
+// Get all records for a specific user
+recordRoutes.route("/babbleroute/user/:user").get(async function (req, res) {
+  try {
+    const { user } = req.params;
+    const result = await Babble.findByUser(user);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
   
   module.exports = recordRoutes;
