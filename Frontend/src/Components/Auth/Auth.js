@@ -11,7 +11,7 @@ export default function Auth() {
         try {
             const response = await fetch("http://localhost:5000/api/signup", {
                 method: 'POST', headers: {
-                    'Content-Type': 'applications/JSON',
+                    'Content-Type': 'application/json',
                 }, body: JSON.stringify({
                     username: user, password: pass
                 }),
@@ -33,7 +33,7 @@ export default function Auth() {
         try {
             const response = await fetch("http://localhost:5000/api/login", {
                 method: 'POST', headers: {
-                    'Content-Type': 'application/JSON',
+                    'Content-Type': 'application/json',
                 }, body: JSON.stringify({
                     username: user, password: pass
                 })
@@ -44,6 +44,7 @@ export default function Auth() {
             } else if (response.status === 500) {
                 window.alert("Internal Server Error!");
             } else if (response.ok) {
+                handleLoginContext(true);
                 //TODO: login
             }
         } catch (error) {
