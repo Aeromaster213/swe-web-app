@@ -4,3 +4,18 @@
   flex-direction: column;
   gap: 20px;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    background: #6666A380;
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8080D7;
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
