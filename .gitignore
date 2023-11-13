@@ -2,3 +2,4 @@ node_modules/
 Frontend/node_modules/
 Backend/express/node_modules/
 package-lock.json
+Backend/express/__pycache__/
