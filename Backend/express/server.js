@@ -125,6 +125,9 @@ const userRouter = require("./routes/userRoute");
 app.use("/user", userRouter); // User route
 
 
+let userID;
+
+
 
 /** API call endpoints for Authentication */
 
@@ -157,6 +160,7 @@ app.post("/api/signup", async (req, res) => {
 
     // Send a success message in response
     res.status(201).json({ message: "User created successfully" });
+    userID = username;
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in signup:", error);
@@ -193,6 +197,7 @@ app.post("/api/login", async (req, res) => {
 
     // Send a success message in response
     res.json({ message: "Login successful" });
+    userID = username;
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in login:", error);
@@ -219,7 +224,7 @@ app.post("/api/upload",  (req, res) => {
     
     // Extract language and username from the request body
     const language = req.body.language;
-    const username = req.body.username;
+    const username = userID;
     
     console.log("Language: ", language);
 
