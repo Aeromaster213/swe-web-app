@@ -6,7 +6,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 hub.set_dir("/persistent/")
 
 models = {"de": 'transformer.wmt16.en-de', "fr": 'transformer.wmt14.en-fr'}
-preloaded_models = {lang: torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt', max_source_positions=8192, max_target_position=8192) for lang in models}
+preloaded_models = {lang: torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt', max_source_positions=16384, max_target_position=16384) for lang in models}
 
 def translation(inp, lang):
     if lang=="en": #We're doing En->X translations
