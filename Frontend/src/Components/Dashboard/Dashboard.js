@@ -11,14 +11,18 @@ export default function Dashboard() {
             try {
                 const response = await fetch("http://localhost:5000/api/getDetails?user=${username}");
                 const data = await response.json();
-                console.log("data" + JSON.stringify(data));
-                setTranscriptions(data);
+                const dataArray = Object.values(data);
+
+                console.log("data", JSON.stringify(dataArray));
+                setTranscriptions(dataArray);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
                 setLoading(false);
             }
         };
+
+        fetchData();
     }, [])
 
     return (
