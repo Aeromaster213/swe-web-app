@@ -17,7 +17,7 @@ function App() {
             <div className='app'>
                 <Navigation/>
                 {!dashboard && (showComponent ? <Result/> : <HeroSection/>)}
-                {!showComponent ? <CenterBox/> : ""}
+                {(!showComponent && !dashboard) && <CenterBox/> }
                 {dashboard && <Dashboard/>}
                 <About id="about"/>
             </div>

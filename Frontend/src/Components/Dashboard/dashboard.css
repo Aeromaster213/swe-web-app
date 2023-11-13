@@ -1,0 +1,8 @@
+.dashboard-container{
+    height: 100vh;
+}
+
+.dashboard-bard{
+    display: grid;
+    overflow: scroll;
+}
