@@ -126,6 +126,9 @@ const userRouter = require("./routes/userRoute");
 app.use("/user", userRouter); // User route
 
 
+let userID;
+
+
 
 /** API call endpoints for Authentication */
 
@@ -158,6 +161,8 @@ app.post("/api/signup", async (req, res) => {
 
     // Send a success message in response
     res.status(201).json({ message: "User created successfully" });
+    userID = username;
+    console.log(userID, "signed up");
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in signup:", error);
@@ -194,6 +199,8 @@ app.post("/api/login", async (req, res) => {
 
     // Send a success message in response
     res.json({ message: "Login successful" });
+    userID = username;
+    console.log(userID, "logged in");
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in login:", error);
@@ -220,9 +227,10 @@ app.post("/api/upload",  (req, res) => {
     
     // Extract language and username from the request body
     const language = req.body.language;
-    const username = req.body.username;
+    const username = userID;
     
     console.log("Language: ", language);
+    console.log("Username: ", username);
 
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
@@ -264,8 +272,7 @@ app.post("/api/upload",  (req, res) => {
         console.log(transcription);
         
         // Decode the transcription from buffer to utf8 string for JSON parsing
-        const utf8String = iconv.decode(transcription, 'utf8');
-        data = JSON.parse(utf8String);
+        data = JSON.parse(transcription);
 
         console.log("Subtitle:", data.srt);
         console.log("Text: ", data.txt);
