@@ -3,11 +3,12 @@ import './auth.css';
 import {useUploadContext} from "../../Context/UploadContext";
 
 export default function Auth() {
-    const {handleLoginContext} = useUploadContext();
+    const {handleLoginContext, username, handleUser} = useUploadContext();
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
 
     const handleSignup = async () => {
+        handleUser(user);
         try {
             const response = await fetch("http://localhost:5000/api/signup", {
                 method: 'POST', headers: {
@@ -29,6 +30,7 @@ export default function Auth() {
     };
 
     const handleLogin = async () => {
+        handleUser(user);
         try {
             const response = await fetch("http://localhost:5000/api/login", {
                 method: 'POST', headers: {
@@ -66,13 +68,13 @@ export default function Auth() {
                     placeholder={"Username"}
                     className={"auth-input auth-user-inp"}
                 />
-                <input
-                    type={"password"}
-                    value={pass}
-                    onChange={(e) => setPass(e.target.value)}
-                    placeholder={"Password"}
-                    className={"auth-input auth-password-inp"}
-                /></div>
+                    <input
+                        type={"password"}
+                        value={pass}
+                        onChange={(e) => setPass(e.target.value)}
+                        placeholder={"Password"}
+                        className={"auth-input auth-password-inp"}
+                    /></div>
 
                 <div className={"auth-button-box"}>
                     <button
@@ -87,7 +89,8 @@ export default function Auth() {
                         type={"button"}
                     >
                         Login
-                    </button></div>
+                    </button>
+                </div>
 
             </div>
         </div>

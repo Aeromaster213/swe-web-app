@@ -9,6 +9,8 @@ export const UploadProvider = ({children}) => {
     const [strings, setStrings] = useState({}); // Initialize with an empty object
     const [fileName, setFileName] = useState(""); // Initialize with an empty object
     const [logged, setLogged] = useState(false);
+    const [username, setUsername] = useState('');
+    const [dashboard, setDashboard] = useState(false);
 
     const handleUploadComplete = (bool, data, name) => {
         setShowComponent(bool);
@@ -20,8 +22,16 @@ export const UploadProvider = ({children}) => {
         setLogged(bool);
     }
 
+    const handleUser = (user) => {
+        setUsername(user);
+    }
+
+    const handleDashboard = (show) => {
+        setDashboard(show);
+    }
+
     return (
-        <UploadContext.Provider value={{showComponent, handleUploadComplete, strings, fileName, handleLoginContext, logged}} >
+        <UploadContext.Provider value={{showComponent, handleUploadComplete, strings, fileName, handleLoginContext, logged, username, handleUser, dashboard, setDashboard}} >
             {children}
         </UploadContext.Provider>
     )
