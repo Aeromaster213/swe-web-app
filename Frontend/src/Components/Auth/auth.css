@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+.auth-logo-text {
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+}
+
+.auth-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #010232;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-box {
+    background-color: #21215B;
+    border-radius: 30px;
+    max-height: 60vh;
+    max-width: 50vw;
+    min-height: 50vh;
+    min-width: 30vw;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-input-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+.auth-input {
+    width: 70%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #8080D7;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: rgba(217, 217, 217, 0.75);
+}
+
+.auth-input::placeholder{
+    text-align: center;
+    color: white;
+}
+
+.auth-button-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%
+}
+
+.auth-button {
+    width: 40%;
+    padding: 12px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background: #9747FF;
+    color: white;
+
+}
+
+.auth-button:hover {
+    background-color: #000;
+    color: #8080D7;
+}
+
+/* Adjust text selection color */
+::selection {
+    background-color: #8080D7;
+    color: white;
+}
+
+
+@media (max-width: 768px){
+    .auth-button{
+        font-size: 15px;
+    }
+    .auth-logo-text{
+        font-size: 20px;
+    }
+}

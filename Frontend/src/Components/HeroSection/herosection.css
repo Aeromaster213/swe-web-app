@@ -1,4 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+.herosection-container {
+    min-height: 50vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 1fr) 70px;
+    margin: 20px;
+}
+
+.herosection-text {
+    font-family: 'Outfit', sans-serif;
+    color: white;
+    font-weight: 800;
+    font-size: 80px;
+}
+
+.translate {
+    grid-column: 1/ span 12;
+    grid-row: 2/ span 1;
+}
+
+.transcribe {
+    grid-column: 1/ span 12;
+    grid-row: 3/ span 1;
+}
+
+.herosection-image {
+    grid-column: 1/ span 12;
+    grid-row: 1/ span 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.herosection-buttons {
+    grid-column: 1/ span 12;
+    grid-row: 5/ span 1;
+    display: flex;
+    flex-wrap: wrap; /* Adjust for smaller screens */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.herosection-button {
+    width: 200px;
+    height: 50px;
+    background: #8080D7;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.herosection-buttons select {
+    text-align-last: center; /* For Firefox */
+    text-align: center; /* For other browsers */
+}
+
+.herosection-button-hidden {
+    display: none;
+}
+
+.progress-bar-container {
+    grid-column: 1 / span 12;
+    grid-row: 2 / span 1;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border-radius: 30px;
+    position: relative;
+}
+
+.progress-bar-bg {
+    height: 20px;
+    background-color: #4C4D87;
+    margin-top: 10px;
+    border-radius: 30px;
+}
+
+.progress-bar-text {
+    grid-column: 1 / span 12;
+    grid-row: 3/ span 1;
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 80px;
+}
+
 
 .herosection-container {
     min-height: 50vh;
@@ -81,7 +183,7 @@
     position: relative;
 }
 
-.progress-bar-bg{
+.progress-bar-bg {
     height: 20px;
     background-color: #4C4D87;
     margin-top: 10px;
@@ -106,3 +208,38 @@
     transition: width 0.3s ease;
 }
 
+
+.progress-bar {
+    height: 20px;
+    background-color: #8080D7;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .herosection-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .herosection-text {
+        font-size: 60px;
+    }
+
+    .herosection-button {
+        width: 150px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .herosection-image {
+        display: none;
+    }
+
+    .progress-bar-text{
+        font-size: 40px;
+    }
+}
