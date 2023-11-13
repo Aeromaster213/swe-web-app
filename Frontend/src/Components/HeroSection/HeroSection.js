@@ -49,7 +49,7 @@ export default function HeroSection() {
                 };
 
                 const simulateUpload = () => {
-                    const totalSteps = 100;
+                    const totalSteps = 90;
                     const progressInterval = 100; // milliseconds
                     const step = totalSteps / ((file.selectedFile.size / 1024)); // Adjust based on file size
 
@@ -138,7 +138,7 @@ export default function HeroSection() {
                         <div className="progress-bar" style={{width: `${uploadProgress}%`}}></div>
                     </div>
                 </div>
-                <div className="progress-bar-text">Converting</div>
+                <div className="progress-bar-text">{uploadProgress === 90 ? "Taking longer than usual.":"Converting"}</div>
             </>)}
     </div>);
 }

@@ -132,7 +132,7 @@
     }
 }
 
-.magic-star>svg {
+.magic-star > svg {
     display: block;
     opacity: 0.3;
 
@@ -149,7 +149,7 @@
     }
 }
 
-.magic-star>svg>path {
+.magic-star > svg > path {
     fill: #FF00FF;
 }
 
@@ -169,5 +169,79 @@
 
     to {
         background-position: -200% center;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-text p {
+        font-size: 30px;
+    }
+
+    #c1 {
+        width: 34px;
+        height: 34px;
+        top: 40%;
+        left: 30%;
+        background: #8AD0DF;
+    }
+
+    #c2 {
+        width: 17px;
+        height: 17px;
+        top: 30%;
+        left: 40%;
+        background: #0075FF;
+    }
+
+    #c3 {
+        width: 52px;
+        height: 52px;
+        top: 10%;
+        left: 70%;
+        background: #8080D7;
+    }
+
+    #c4 {
+        width: 87px;
+        height: 87px;
+        top: 70%;
+        left: 60%;
+        background: #FFFFFF;
+    }
+
+    #c5 {
+        width: 1px;
+        height: 1px;
+        top: 90%;
+        left: 50%;
+        background: #8AD0DF;
+    }
+
+    #c6 {
+        width: 34px;
+        height: 34px;
+        top: 55%;
+        left: 75%;
+        background: #D9D9D9;
+    }
+
+    #c7 {
+        width: 9px;
+        height: 9px;
+        top: 20%;
+        left: 5%;
+        background: #AAD9D9;
+    }
+
+    #c8 {
+        width: 3px;
+        height: 3px;
+        top: 60%;
+        left: 20%;
+        background: #9747FF;
+    }
+
+    .about{
+        height: 50vh;
     }
 }

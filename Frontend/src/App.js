@@ -12,7 +12,7 @@ function App() {
   const { showComponent, logged } = useUploadContext();
 
   return (
-    logged ? (
+    !logged ? (
       <div className='app'>
         <Navigation />
         {showComponent ? <Result /> : <HeroSection />}

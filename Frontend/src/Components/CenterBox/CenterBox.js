@@ -12,11 +12,11 @@ export default function CenterBox() {
                     Supported Formats
                 </div>
                 <div className="centerbox-video">
-                    <img src={play} alt="Play Button Icon"></img>
+                    <img className={"centerbox-image"} src={play} alt="Play Button Icon"></img>
                     <p className="centerbox-text">MP4, MOV, MKV, WEBM</p>
                 </div>
                 <div className="centerbox-audio">
-                    <img src={wave} alt="Audio Wave Icon"></img>
+                    <img className={"centerbox-image"} src={wave} alt="Audio Wave Icon"></img>
                     <p className="centerbox-text">MP3, WAV, FLAC, HEVC</p>
                 </div>
             </div>
