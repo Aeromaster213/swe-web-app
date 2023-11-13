@@ -50,8 +50,9 @@ def remote(file, language):
         print("{\"txt\": \""+rslt["text"], end="\", ")
         print("\"srt\": \""+format_srt(rslt, "nl"), end="\"}")
     else:
-        rslt = transcribe_model.transcribe(file)
-        print("{\"txt\": \""+translation(rslt["text"], language), end="\", ")
+        rslt = transcribe_model.transcribe(file, task="translate")
+        txt = rslt["text"]
+        print("{\"txt\": \""+translation(txt, language), end="\", ")
         print("\"srt\": \""+format_srt(rslt, language), end="\"}")
 
 if __name__=="__main__":

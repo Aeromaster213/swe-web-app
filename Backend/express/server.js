@@ -268,8 +268,7 @@ app.post("/api/upload",  (req, res) => {
         console.log(transcription);
         
         // Decode the transcription from buffer to utf8 string for JSON parsing
-        const utf8String = iconv.decode(transcription, 'utf8');
-        data = JSON.parse(utf8String);
+        data = JSON.parse(transcription);
 
         console.log("Subtitle:", data.srt);
         console.log("Text: ", data.txt);
