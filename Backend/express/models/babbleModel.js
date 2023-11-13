@@ -11,6 +11,7 @@ const babbleSchema = new mongoose.Schema({
 
 // Static method to find records by user
 babbleSchema.statics.findByUser = async function (user) {
+  // Use Mongoose to find records with the specified user
   return this.find({ user });
 };
 

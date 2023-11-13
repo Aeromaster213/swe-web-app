@@ -19,6 +19,13 @@ const storage = multer.diskStorage({
 // Create a Multer instance with the defined storage
 const upload = multer({ storage });
 
+
+/**
+ * Generates a hash for a given file path using the SHA-256 algorithm.
+ *
+ * @param {string} filePath - The path of the file for which to generate the hash.
+ * @returns {string} - The hexadecimal representation of the file hash.
+ */
 function generateFileHash(filePath) {
   const algorithm = "sha256";
   const hash = crypto.createHash(algorithm);
@@ -29,6 +36,15 @@ function generateFileHash(filePath) {
   return hash.digest("hex");
 }
 
+
+/**
+ * Handles file upload using Multer, generating a hash for the uploaded file,
+ * and passing the hash and original file name to a callback function.
+ *
+ * @param {Object} req - The Express request object.
+ * @param {Object} res - The Express response object.
+ * @param {Function} callback - The callback function to handle the hash and original file name.
+ */
 function handleUpload(req, res, callback) {
   upload.single("file")(req, res, (err) => {
     if (err) {
@@ -44,22 +60,11 @@ function handleUpload(req, res, callback) {
     // Generate hash for the file
     const hash = generateFileHash(filePath);
 
-    
-    //console.log(hash);
-
-    // Pass the hash back to the callback function
-    // if (callback) {
-    //   callback(hash);
-    // }
-
     // Pass both the hash and the original file name back to the callback function
     if (callback) {
       const originalFileName = req.file.originalname;
       callback(hash, originalFileName);
     }
-
-    // Respond with the hash
-    //res.json({ hash });
 
   });
 }

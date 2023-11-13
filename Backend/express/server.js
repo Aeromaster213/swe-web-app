@@ -308,17 +308,32 @@ app.post("/api/upload",  (req, res) => {
 
 
 
-// Get all transcriptions for a specific user
+/**
+ * GET endpoint to retrieve all transcriptions for a specific user.
+ *
+ * @param {Object} req - The Express request object.
+ * @param {Object} res - The Express response object.
+ * @returns {Object} - JSON response containing transcriptions or an error message.
+ */
 app.get("/api/getDetails", async (req, res) => {
   try {
+    // Extract 'user' parameter from the query
     const { user } = req.query;
+
+    // Check if 'user' parameter is provided
     if (!user) {
+      // If not provided, respond with a bad request error
       return res.status(400).json({ error: "Username is required" });
     }
 
+    // Call the static method 'findByUser' on the Babble model to get transcriptions for the specified user
     const result = await Babble.findByUser(user);
+
+    // Respond with the transcriptions in JSON format
     res.json(result);
+    
   } catch (err) {
+     // If an error occurs, respond with a server error and include the error message
     res.status(500).json({ message: err.message });
   }
 });
