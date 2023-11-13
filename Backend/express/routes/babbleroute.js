@@ -26,8 +26,8 @@ recordRoutes.route("/babbleroute").get(async function (req, res) {
   // Create a new record
   recordRoutes.route("/babbleroute/add").post(async function (req, res) {
     try {
-      const { id, srt, txt } = req.body;
-      const newRecord = new Babble({ id, srt, txt });
+      const { id, user, file, language, srt, txt } = req.body;
+      const newRecord = new Babble({ id, user, file, language, srt, txt });
       await newRecord.save();
       res.status(201).json(newRecord);
       console.log("Added");
@@ -42,7 +42,7 @@ recordRoutes.route("/babbleroute").get(async function (req, res) {
       const { id, field2, field3 } = req.body;
       const updatedRecord = await Babble.findByIdAndUpdate(
         req.params.id,
-        { id, srt, txt },
+        { id, user, file, language, srt, txt },
         { new: true }
       );
       res.json(updatedRecord);

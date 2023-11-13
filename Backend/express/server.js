@@ -245,7 +245,6 @@ app.post("/api/upload",  (req, res) => {
 
     // Check if the record already exists in the Babble collection
     try {
-      console.log("Existing record:");
       const existingRecord = await Babble.findOne({ 
         id: newFileName, 
         user: username, 
