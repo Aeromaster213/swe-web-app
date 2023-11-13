@@ -161,6 +161,7 @@ app.post("/api/signup", async (req, res) => {
     // Send a success message in response
     res.status(201).json({ message: "User created successfully" });
     userID = username;
+    console.log(userID, "signed up");
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in signup:", error);
@@ -198,6 +199,7 @@ app.post("/api/login", async (req, res) => {
     // Send a success message in response
     res.json({ message: "Login successful" });
     userID = username;
+    console.log(userID, "logged in");
   } catch (error) {
     // Log and send an error response in case of an exception
     console.error("Error in login:", error);
@@ -227,6 +229,7 @@ app.post("/api/upload",  (req, res) => {
     const username = userID;
     
     console.log("Language: ", language);
+    console.log("Username: ", username);
 
     // Rename the cache file into the hash string
     cacheRename.renameFile(originalFileName, newFileName);
