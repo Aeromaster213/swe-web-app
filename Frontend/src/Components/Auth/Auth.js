@@ -21,7 +21,6 @@ export default function Auth() {
             } else if (response.status === 500) {
                 window.alert("Internal Server Error!");
             } else if (response.status === 201) {
-                //implement signup and login TODO:
                 handleLoginContext(true);
             }
         } catch (error) {
@@ -45,7 +44,6 @@ export default function Auth() {
                 window.alert("Internal Server Error!");
             } else if (response.ok) {
                 handleLoginContext(true);
-                //TODO: login
             }
         } catch (error) {
             console.log("Unexpected Error!");
