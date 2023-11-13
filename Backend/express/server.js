@@ -55,6 +55,7 @@ connection.on("error", (err) => {
 mongoose.connect(uri).then(()=>{
   app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
+    console.log('Press Ctrl+C to quit.');
   });
 });
 
@@ -68,6 +69,9 @@ const transcriber = require('./functionals/transcriber');
 
 // Import the Babble model
 const Babble = require("./models/babbleModel");
+
+// Import the User model
+const User = require("./models/userModel");
 
 // Routes
 const recordRouter = require("./routes/record");
@@ -91,6 +95,7 @@ app.use("/user", userRouter); // User route
 app.post("/api/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
+
 
     // Check if the username already exists
     const existingUser = await User.findOne({ username });
