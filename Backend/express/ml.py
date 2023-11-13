@@ -4,16 +4,26 @@ from os import path
 from torch import hub
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 hub.set_dir("/persistent/")
+
 models = {"de": 'transformer.wmt16.en-de', "fr": 'transformer.wmt14.en-fr'}
+preloaded_models = {lang: torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt', max_source_positions=8192, max_target_position=8192) for lang in models}
 
 def translation(inp, lang):
     if lang=="en": #We're doing En->X translations
         return inp
-    en2de = torch.hub.load('pytorch/fairseq', models[lang], tokenizer='moses', bpe='subword_nmt', max_source_positions=8192, max_target_position=8192)
-    en2de.eval()  # disable dropout
+    translate_model = preloaded_models[lang]
+    translate_model.eval()  # disable dropout
     if DEVICE == "cuda":
-        en2de.cuda()
-    return en2de.translate(inp)
+        translate_model.cuda()
+    out=translate_model.translate(inp)
+    return out
+
+def remote_translate(inp, lang):
+    inp = open(inp).read()
+    if lang!="nl":
+        inp = translation(inp, lang)
+    print("{\"txt\": \""+inp, end="\", ")
+    print("\"srt\": \" No SRT for text", end="\"}")
 
 def format_srt(transcript, lang):
     srt_output = ""
@@ -21,7 +31,7 @@ def format_srt(transcript, lang):
         start = segment['start']
         end = segment['end']
         text = segment['text']
-        if lang!="en" and lang!="nl":
+        if lang!="nl":
             text=translation(text, lang)
 
         # Convert times to SRT format (hours:minutes:seconds,milliseconds)
@@ -34,19 +44,19 @@ def format_srt(transcript, lang):
     return srt_output
 
 def remote(file, language):
-    model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
+    transcribe_model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
     if language=="nl":
-        rslt=whisper.transcribe(model, file)
+        rslt=whisper.transcribe(transcribe_model, file)
         print("{\"txt\": \""+rslt["text"], end="\", ")
         print("\"srt\": \""+format_srt(rslt, "nl"), end="\"}")
     else:
-        rslt = model.transcribe(file)
+        rslt = transcribe_model.transcribe(file)
         print("{\"txt\": \""+translation(rslt["text"], language), end="\", ")
         print("\"srt\": \""+format_srt(rslt, language), end="\"}")
 
 if __name__=="__main__":
     print("Model test loaded!")
-    model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
+    transcribe_model = whisper.load_model("small", download_root="/persistent").to(DEVICE)
     for f in pathlib.Path("samples/").iterdir():
         print(str(f))
         print(transcribe_srt(model, f))

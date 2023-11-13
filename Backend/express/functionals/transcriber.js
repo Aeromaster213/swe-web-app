@@ -6,6 +6,7 @@ function callMultimedia(file, language) {
       console.log("Transcription started");
       var dataOUT = '';
   
+      ml.stdout.setEncoding("utf-8");
       ml.stdout.on('data', (data) => {
         dataOUT += data.toString();
       });
@@ -27,10 +28,11 @@ function callMultimedia(file, language) {
   
 function callText(file, language) {
     return new Promise((resolve, reject) => {
-      const ml = spawn("python", ["-c", `from ml import *; remote("filecache/"+"${file}", "${language}")`])
+      const ml = spawn("python", ["-c", `from ml import *; remote_translate("filecache/"+"${file}", "${language}")`])
       console.log("Transcription started");
       var dataOUT = '';
   
+      ml.stdout.setEncoding("utf-8");
       ml.stdout.on('data', (data) => {
         dataOUT += data.toString();
       });

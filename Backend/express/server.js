@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs-extra");
 const bcrypt = require("bcrypt");
-const iconv = require('iconv-lite');
 
 // Load environment variables from .env
 dotenv.config(); 
@@ -188,8 +187,7 @@ app.post("/api/upload",  (req, res) => {
         }
         console.log(transcription);
         
-        const utf8String = iconv.decode(transcription, 'utf8');
-        data = JSON.parse(utf8String);
+        data = JSON.parse(transcription);
 
         console.log("Subtitle:", data.srt);
         console.log("Text: ", data.txt);
