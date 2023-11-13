@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
 
-
 .result-wait-text {
     color: white;
     align-self: center;
@@ -36,17 +35,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Inter;
+    font-family: Inter, sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
-    letter-spacing: 0em;
+    letter-spacing: 0;
     text-align: left;
     color: #6666A3;
 }
 
 .result-heading-text {
-    font-family: Outfit;
+    font-family: Outfit, sans-serif;
     font-size: 24px;
     font-weight: 600;
     line-height: 28px;
@@ -127,7 +126,7 @@
 }
 
 .result-text {
-    font-family: Outfit;
+    font-family: Outfit, sans-serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 28px;
@@ -137,5 +136,35 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .infobox {
+        width: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .info-thumbnail {
+        display: none;
+    }
+
+    .result-graphic {
+        display: none;
+    }
+
+    .result-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 30px;
+    }
+
+    .result-srt {
+        grid-row: 1/ span 1;
+        grid-column: 1/ span 1;
+    }
+
+    .result-txt {
+        grid-column: 1/ span 1;
+        grid-row: 2/ span 1;
+    }
 }

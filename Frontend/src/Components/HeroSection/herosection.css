@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
 .herosection-container {
     min-height: 50vh;
@@ -100,7 +101,6 @@
     font-size: 80px;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
 .herosection-container {
     min-height: 50vh;
@@ -237,5 +237,9 @@
 
     .herosection-image {
         display: none;
+    }
+
+    .progress-bar-text{
+        font-size: 40px;
     }
 }

@@ -92,53 +92,58 @@ export default function HeroSection() {
     }
 
 
-    return (<div className="herosection-container">
-        {!loading ? (<>
-            <div className="herosection-text translate">
-                <text style={{color: "#8080D7"}}>T</text>
-                RANSLATE
-            </div>
-            <div className="herosection-text transcribe">
-                <text style={{color: "#8080D7"}}>T</text>
-                RANSCRIBE
-            </div>
-            <div className="herosection-image">
-                <img src={heroimage} alt="heroimage"/>
-            </div>
-            <div className="herosection-buttons">
-                <input
-                    type="file"
-                    accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
-                    ref={pickerRef}
-                    onChange={handleFileChange}
-                    style={{display: 'none'}}
-                />
-                <button
-                    type="button"
-                    className="herosection-button"
-                    onClick={handleButtonClick}
-                >{file ? file.selectedFile.name : "Select File"}</button>
-                <select id="language" className="herosection-button">
-                    <option value="nl">Native</option>
-                    <option value={"en"}>English</option>
-                    <option value="de">German</option>
-                    <option value="fr">French</option>
-                </select>
-                <button
-                    type="button"
-                    className="herosection-button"
-                    onClick={handleUpload}
-                >Upload File
-                </button>
-            </div>
-        </>) : (// Show a progress bar when loading is true
-            <>
-                <div className="progress-bar-container">
-                    <div className={"progress-bar-bg"}>
-                        <div className="progress-bar" style={{width: `${uploadProgress}%`}}></div>
-                    </div>
+    return (
+        <div className="herosection-container">
+            {!loading ? (<>
+                <div className="herosection-text translate">
+                    <text style={{color: "#8080D7"}}>T</text>
+                    RANSLATE
                 </div>
-                <div className="progress-bar-text">{uploadProgress === 90 ? "Taking longer than usual.":"Converting"}</div>
-            </>)}
-    </div>);
+                <div className="herosection-text transcribe">
+                    <text style={{color: "#8080D7"}}>T</text>
+                    RANSCRIBE
+                </div>
+                <div className="herosection-image">
+                    <img src={heroimage} alt="heroimage"/>
+                </div>
+                <div className="herosection-buttons">
+                    <input
+                        type="file"
+                        accept="audio/mp3 audio/flac audio/hevc audio/wav video/mp4 video/mov video/mkv video/webm"
+                        ref={pickerRef}
+                        onChange={handleFileChange}
+                        style={{display: 'none'}}
+                    />
+                    <button
+                        type="button"
+                        className="herosection-button"
+                        onClick={handleButtonClick}
+                    >{file ? file.selectedFile.name : "Select File"}</button>
+                    <select id="language" className="herosection-button">
+                        <option value="nl">Native</option>
+                        <option value={"en"}>English</option>
+                        <option value="de">German</option>
+                        <option value="fr">French</option>
+                    </select>
+                    <button
+                        type="button"
+                        className="herosection-button"
+                        onClick={handleUpload}
+                    >Upload File
+                    </button>
+                </div>
+            </>) : (// Show a progress bar when loading is true
+                <>
+                    <div className="progress-bar-container">
+                        <div className={"progress-bar-bg"}>
+                            <div className="progress-bar" style={{width: `${uploadProgress}%`}}></div>
+                        </div>
+                    </div>
+                    <div
+                        className="progress-bar-text"
+                    >
+                        {uploadProgress === 90 ? "Taking longer than usual." : "Converting"}
+                    </div>
+                </>)}
+        </div>);
 }
