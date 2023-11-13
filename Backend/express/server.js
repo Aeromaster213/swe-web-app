@@ -6,7 +6,6 @@ const dotenv = require("dotenv");
 const path = require("path");
 const fs = require("fs-extra");
 const bcrypt = require("bcrypt");
-const iconv = require('iconv-lite');
 
 /** Load environment variables from .env  */
 dotenv.config(); 

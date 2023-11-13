@@ -15,4 +15,6 @@ RUN npm i
 EXPOSE 5001
 EXPOSE 5000
 ENV TORCH_HOME=/persistent
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 CMD node server.js

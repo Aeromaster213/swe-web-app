@@ -77,6 +77,7 @@ export default function HeroSection() {
                     const data = await response.json();
                     console.log("response:", JSON.stringify(data));
                     handleUploadComplete(true, data, file.selectedFile.name);
+                    setLoading(false);
                 } else {
                     console.error("Failed to upload");
                 }
