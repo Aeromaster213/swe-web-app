@@ -9,11 +9,11 @@ const babbleSchema = new mongoose.Schema({
   txt: String,
 });
 
-const Babble = mongoose.model('transcriptions', babbleSchema);
-
 // Static method to find records by user
 babbleSchema.statics.findByUser = async function (user) {
   return this.find({ user });
 };
+
+const Babble = mongoose.model('transcriptions', babbleSchema);
 
 module.exports = Babble;
