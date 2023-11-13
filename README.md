@@ -10,7 +10,7 @@ Allowing corporations to host our web-applications in their servers, we provide 
 ## Uniqueness
 No other solution exist outside of research domians, and that too do not provide a simplistic way to translate and transcribe text/audio for users
 
-**Long story short: We are building a website that can transcribe and translate input audio/video files to text/srt files using AI based models of Whisper.cpp**
+**Long story short: We are building a website that can transcribe and translate input audio/video files to text/srt files using AI based models of Whisper.cpp amd Fairseq**
 
 ## Contributions
 Arup Biswas         : Documentation and Tech Research (Existing solutions and usable tech) <br>
