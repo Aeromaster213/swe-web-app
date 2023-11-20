@@ -12,6 +12,8 @@ No other solution exist outside of research domains, and that too do not provide
 
 **Long story short: We are building a website that can transcribe and translate input audio/video files to text/srt files using AI based models of Whisper.cpp and Fairseq**
 
+The major idea behind this is that the connection between express and python and the actual deployment of the models, which were poorly documented and for fairseq, poorly supported.
+
 ## Contributions
 Arup Biswas         : Documentation and Tech Research (Existing solutions and usable tech) <br>
 Arvind Srinivasan   : Docker, Model deployments in Python, ExpressJS bridge <br>
